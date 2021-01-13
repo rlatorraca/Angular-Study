@@ -1,0 +1,153 @@
+<section class="input-output-properties">
+  <article>
+    <h3>Input/Output Properties</h3>
+    <app-curso [nome]="nomeDoCurso"></app-curso>
+    <contador [valor]="valorInicial" (mudouValor)="aoMudarValor($event)" [valorSaida]="valorMostrado"></contador>
+  </article>
+</section>
+
+
+<section class="two-way-binding">
+  <article>
+    <h3>Two-way Data Binding</h3>
+    <div>
+       <input type="text" class="text" 
+        [value] = "nome" 
+        (input) = "nome = $event.target.value"
+        />
+       <p>Voce digitou [1]: {{ nome }}</p>
+    
+      <input type="text" class="text" 
+       [ngModel] = "nome" 
+       (ngModelChange) = "nome = $event"
+       />
+      <p>Voce digitou [2]: {{ nome }}</p>
+
+
+      <input type="text" class="text" 
+       [(ngModel)] = "nome" 
+       />
+      <p>Voce digitou [Two-way data binding]: {{ nome }}</p>
+   </div>
+
+   <div>
+     <input type="text" [(ngModel)]="pessoa.nome">
+     <input type="text" [(ngModel)]="pessoa.idade">
+   </div>
+   <p>Meu nome é {{ pessoa.nome}} e tenho {{ pessoa.idade }} de idade.</p>
+
+  </article>
+</section>
+
+<section class="event-binding">
+  <article>
+    <h3>Class and Style Binding</h3>
+    <div>
+        <button class="btn-primary btn" (click)= "botaoClicado()">Me CLique</button>
+    </div>
+    <br><br>
+    <input type="text" #campoEntrada (keyup)="mostreNoConsoleAoDigitar($event)"
+        (keyup.enter)="salvarValorDigitado($event.target.value)"
+        (blur)="salvarValorDigitado(campoEntrada.value)"/>
+
+    <p>Valor Digitado : {{ valorDaEntradaTexto }}</p>
+    <p>Valor Salvo : {{ valorSalvo }}</p>
+    <br>
+    <span (mouseover)="onMouseOverOuOut()" (mouseout)="onMouseOverOuOut()" [class.marcarDesmarcar]="isMouseOver">
+      Passo o mouse sobre a frase
+  </span>
+  </article>
+</section>
+
+<section class="property-binding">
+  <article>
+    <h3>Class and Style Binding</h3>
+    <div>
+      Selecione uma classe:
+      <select #classe (change)="0">
+        <option value="alert-primary" role="alert">
+          PRIMARY
+        </option>
+        <option value="alert-secondary" role="alert">
+          SECONDARY
+        </option>
+        <option value="alert-success" role="alert">
+          SUCCESS
+        </option>
+        <option value="alert-danger" role="alert">
+          DANGER
+        </option>
+        <option value="alert-warning" role="alert">
+          WARNING
+        </option>
+        <option value="alert-info" role="alert">
+          INFO
+        </option>
+        <option value="alert-light" role="alert">
+          LIGHT
+        </option>
+        <option value="alert-dark" role="alert">
+          DARK
+        </option>
+      </select>
+     </div>
+
+     <!-- Interpolation de Classe -->
+     <div class="alert {{ classe.value}}" role="alert">
+       Cor do Alerta Selecionado
+     </div>
+
+     <div>
+        <!-- Property Binding de Classe -->
+        <div class="alert" role="alert" [class.alert-primary] = "classe.value == 'alert-primary'" >
+          PRIMARY
+        </div>
+        <div class="alert" role="alert" [class.alert-secondary] = "classe.value == 'alert-secondary'" >
+          SECONDARY
+        </div>
+        <div class="alert" role="alert" [class.alert-success] = "classe.value == 'alert-success'" >
+          SUCCESS
+        </div>
+
+        <!-- Property Binding de Estilos -->
+        <div class="alert" role="alert" [class.alert-danger] = "classe.value == 'alert-danger'"
+          [style.display] = "classe.value == 'alert-danger' ? 'block' : 'none'">
+          DANGER so aparece se for Selecionado
+        </div>
+        <div class="alert" role="alert" [class.alert-warning] = "classe.value == 'alert-warning'" >
+          WARNING
+        </div>
+        <div class="alert" role="alert" [class.alert-info] = "classe.value == 'alert-info'" >
+          INFO
+        </div>
+        <div class="alert" role="alert" [class.alert-light] = "classe.value == 'alert-light'" >
+          LIGHT
+        </div>
+        <div class="alert" role="alert" [class.alert-dark] = "classe.value == 'alert-dark'" >
+          DARK
+        </div>
+      </div>
+  </article>
+</section>
+
+<section class="interporlation">
+  <article>
+    <h3>Interpolation Example</h3>
+    <p>Pegando o valor da url no data-binding.component.ts: {{ url }}</p>
+    <p>o Angular resolve expressões matematica e joga na tela com interpolacao[10 x 98] = {{ 10*98 }}</p>
+    <p>o Angular resolve expressões matematica e joga na tela com interpolacao usando uma funcao [
+      10 x 98 + getValor(1,5)] = {{ 10 * 98 + getValor(1,5) }}</p>
+    <p>Boolean => Curso Angular && Gostou do Curso : {{ cursoAngular && getCurtiuCurso() }}</p>
+    <p>Imagens com interpolation : {{ urlImagem }} </p>
+  </article>
+
+  <article>
+    <h3>Property Binding</h3>
+    <p>Imagens com Interpolation: <img src="{{ urlImagem }}"/></p>
+    <br>
+    <p>Imagens com Property-binding : <img [src] = "urlImagem" /></p>
+    <p>Imagens com Property-binding : <img bind-src = "urlImagem" /></p>
+  </article>
+
+
+</section>
