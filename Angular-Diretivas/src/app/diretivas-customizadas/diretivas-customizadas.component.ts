@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-diretiva-ngif',
-  templateUrl: './diretiva-ngif.component.html',
-  styleUrls: ['./diretiva-ngif.component.css']
+  selector: 'app-diretivas-customizadas',
+  templateUrl: './diretivas-customizadas.component.html',
+  styleUrls: ['./diretivas-customizadas.component.css']
 })
-export class DiretivaNgifComponent implements OnInit {
+export class DiretivasCustomizadasComponent implements OnInit {
 
-  cursos: string[] = ["Angular 11"];
   mostrarCursos: boolean = false;
-
+  
   constructor() { }
 
   ngOnInit(): void {
   }
+
   
   onMostrarCursos(){
     this.mostrarCursos = !this.mostrarCursos;
