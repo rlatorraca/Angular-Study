@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "Angular-Diretivas"
+  "defaultProject": "Angular-Diretivas",
+  "cli": {
+    "analytics": false
+  }
 }
