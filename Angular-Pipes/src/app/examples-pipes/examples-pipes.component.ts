@@ -29,4 +29,16 @@ export class ExamplesPipesComponent implements OnInit {
     this.livros.push(novoCurso);
   }
 
+  obterCursos() {
+
+    if(this.livros.length === 0 || this.filtro === undefined || this.filtro.trim() === '') {
+      return this.livros;
+    } else {
+      return this.livros.filter(
+        (v) => v.toLocaleLowerCase().includes((this.filtro.toLocaleLowerCase()))
+      );
+    }
+   
+  }
+
 }
