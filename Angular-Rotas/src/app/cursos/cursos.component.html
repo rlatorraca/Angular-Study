@@ -1,1 +1,7 @@
-<p>cursos works!</p>
+<h4>Lista de Cursos</h4>
+
+<div class="collection">
+    <a class="collection-item" *ngFor="let item of cursos" [routerLink]="['/curso', item.id]">
+        {{ item.nome }}
+    </a>
+</div>
