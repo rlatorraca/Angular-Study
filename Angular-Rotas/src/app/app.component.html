@@ -3,7 +3,7 @@
     <a routerLink="" class="brand-logo right">Rotas Angular</a>
     <ul id="nav-mobile" class="left hide-on-med-and-down">
       <li routerLinkActive="active"><a routerLink="/login">Login</a></li>
-      <li routerLinkActive="active"><a routerLink="/cursos">Courses</a></li>
+      <li routerLinkActive="active"><a routerLink="/cursos" [queryParams]="{page:1}">Courses</a></li>
       <li routerLinkActive="active"><a [routerLink]="['curso', idCurso.value]">Course by ID</a></li>
     </ul>
   </div>
