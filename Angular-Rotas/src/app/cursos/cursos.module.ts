@@ -1,3 +1,4 @@
+import { CursosRoutingModule } from './cursos.routing.module';
 import { CursosServiceService } from './cursos-service.service';
 
 import { NgModule } from '@angular/core';
@@ -9,7 +10,8 @@ import { CommonModule } from '@angular/common';
 
 @NgModule({
     imports: [
-        CommonModule
+        CommonModule,
+        CursosRoutingModule
     ],
     exports: [],
     declarations: [
