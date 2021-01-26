@@ -1,5 +1,6 @@
-import { AlunosModule } from './alunos/alunos.modules';
-import { CursosModule } from './cursos/cursos.module';
+
+//import { AlunosModule } from './alunos/alunos.modules';
+//import { CursosModule } from './cursos/cursos.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -13,6 +14,8 @@ import { LoginComponent } from './login/login.component';
 //import { CursosComponent } from './cursos/cursos.component';
 //import { CursoDetalheComponent } from './cursos/curso-detalhe/curso-detalhe.component';
 //import { CursoNaoEncontradoComponent } from './cursos/curso-nao-encontrado/curso-nao-encontrado.component';
+import { AuthService } from './login/auth.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,12 +30,13 @@ import { LoginComponent } from './login/login.component';
   ],
   imports: [
     BrowserModule,
-    CursosModule,
+    //CursosModule,
     AppRoutingModule,
-    AlunosModule,
+    FormsModule
+    //AlunosModule,
     
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
