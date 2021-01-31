@@ -1,3 +1,5 @@
+import { AlunosGuard } from './guards/alunos.guard';
+import { CursosGuard } from './guards/curso.auth';
 
 //import { AlunosModule } from './alunos/alunos.modules';
 //import { CursosModule } from './cursos/cursos.module';
@@ -37,7 +39,7 @@ import { AuthGuard } from './guards/auth.guard';
     //AlunosModule,
     
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard, CursosGuard, AlunosGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
