@@ -9,7 +9,7 @@
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <input [(ngModel)]="aluno.nome" id="nome" type="text" class="validate">
+                <input [(ngModel)]="aluno.nome" id="nome" type="text" class="validate" (input)="onInput()">
             <label for="nome" class="active">Nome do aluno</label>
             </div>
         </div>

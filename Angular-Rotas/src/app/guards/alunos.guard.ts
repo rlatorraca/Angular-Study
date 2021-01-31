@@ -12,13 +12,13 @@ export class AlunosGuard implements CanActivateChild{
         ): Observable<boolean>|Promise<boolean>|boolean {
             //return this.permissions.canActivate(this.currentUser, route.params.id);
 
-            console.log(route);
-            console.log(state);
+            //console.log(route);
+            //console.log(state);
 
 
             if (state.url.includes('edit')) {
-                alert('Usuário sem permissão de edição');
-                return false;
+                //alert('Usuário sem permissão de edição');
+                //return false;
             }
             return true;
         }
