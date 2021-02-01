@@ -1,3 +1,5 @@
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
+
 import { AlunosGuard } from './guards/alunos.guard';
 import { CursosGuard } from './guards/curso.auth';
 
@@ -25,14 +27,21 @@ const routes: Routes = [
   //{path: 'curso/:id', component: CursoDetalheComponent},
   {path: 'login', component: LoginComponent},
   //{path: 'naoencontrado', component: CursoNaoEncontradoComponent}
-  {path: '', 
+  {path: 'home', 
     component: HomeComponent,
     canActivate: [AuthGuard]  
   },
+  {path: '', 
+    redirectTo: '/home',
+    pathMatch: 'full'  
+  },
+  { path: '**', component: PaginaNaoEncontradaComponent},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)], // Conta as rotas de toda aplicacao
+  imports: [RouterModule.forRoot(routes, 
+    //{useHash: true}
+    )], // Conta as rotas de toda aplicacao
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
