@@ -48,7 +48,8 @@
         
   </div>
 
-  <div class="form-row ">   
+  <div ngModelGroup="endereco">
+    <div class="form-row ">   
 
       <div class="col-md-3 form-group " 
         [class.has-error]="!cep.valid && cep.touched"
@@ -90,88 +91,89 @@
         <input type="text" class="form-control" id="complemento" name="complemento" ngModel #complemento="ngModel"/>
         
       </div>  
-    
-  </div>
-    
   
-  <div class="form-group"
-    [class.has-error]="!rua.valid && rua.touched"
-    [class.has-feedback]="!rua.valid && rua.touched">
+    </div>
+  
 
-    
-    <label for="rua" class="form-control-label"  [class.text-danger]="!rua.valid && rua.touched">Rua</label>
+    <div class="form-group"
+      [class.has-error]="!rua.valid && rua.touched"
+      [class.has-feedback]="!rua.valid && rua.touched">
 
-    <input type="rua" class="form-control" id="rua" placeholder="Avenida, Rua, Beco, Travessa, Passeio, etc" 
-      name="rua" [(ngModel)]="rua.email" required  #rua="ngModel"
-      [ngClass]="aplicaCSSDeErro(rua)"  />
+      
+      <label for="rua" class="form-control-label"  [class.text-danger]="!rua.valid && rua.touched">Rua</label>
 
-      <app-field-control-erro 
-          [mostraErro]="verificaIfFieldValidAndTouched(rua)" 
-          msgErro="Rua is mandatory" >
-      </app-field-control-erro>
-    
-      <!-- <div *ngIf="!rua.valid && rua.touched" class="alert alert-danger" role="alert">
-        Rua is mandatory
-      </div>       -->
+      <input type="rua" class="form-control" id="rua" placeholder="Avenida, Rua, Beco, Travessa, Passeio, etc" 
+        name="rua" [(ngModel)]="rua.email" required  #rua="ngModel"
+        [ngClass]="aplicaCSSDeErro(rua)"  />
+
+        <app-field-control-erro 
+            [mostraErro]="verificaIfFieldValidAndTouched(rua)" 
+            msgErro="Rua is mandatory" >
+        </app-field-control-erro>
+      
+        <!-- <div *ngIf="!rua.valid && rua.touched" class="alert alert-danger" role="alert">
+          Rua is mandatory
+        </div>       -->
+          
+    </div>
+
+
+    <div class="form-row ">   
+
+      <div class="col-md-3 form-group " 
+        [class.has-error]="!bairro.valid && bairro.touched"
+        [class.has-feedback]="!bairro.valid && bairro.touched">
+        <label for="bairro" class="conrol-label">Bairro</label>
+        <input type="text" class="form-control" id="bairro" name="bairro" ngModel required #bairro="ngModel"
+        [ngClass]="aplicaCSSDeErro(bairro)" />
+
+        <app-field-control-erro 
+            [mostraErro]="verificaIfFieldValidAndTouched(bairro)" 
+            msgErro="Bairro is mandatory" >
+        </app-field-control-erro>
+        <!-- <div *ngIf="!bairro.valid && bairro.touched" class="alert alert-danger" role="alert">
+          Bairro is mandatory
+        </div>   -->
+
+      </div>
+
+      <div class="col-md-5 form-group " 
+        [class.has-error]="!cidade.valid && cidade.touched"
+        [class.has-feedback]="!cidade.valid && cidade.touched">
+        <label for="cidade" class="conrol-label">Cidade</label>
+        <input type="text" class="form-control" id="cidade" name="cidade" ngModel required #cidade="ngModel"
+          [ngClass]="aplicaCSSDeErro(cidade)"   readonly/>
+
+          <app-field-control-erro 
+            [mostraErro]="verificaIfFieldValidAndTouched(cidade)" 
+            msgErro="Cidade is mandatory" >
+          </app-field-control-erro>
+          <!-- <div *ngIf="!cidade.valid && cidade.touched" class="alert alert-danger" role="alert">
+            Cidade is mandatory
+          </div>   -->
         
-  </div>
+      </div>   
 
-  
-  <div class="form-row ">   
+      <div class="col-md-4 form-group " 
+        [class.has-error]="!estado.valid && estado.touched"
+        [class.has-feedback]="!estado.valid && estado.touched">
+        <label for="estado" class="conrol-label">Estado</label>
+        <input type="text" class="form-control" id="estado" name="estado" ngModel required #estado="ngModel"
+          [ngClass]="aplicaCSSDeErro(estado)" />
 
-    <div class="col-md-3 form-group " 
-      [class.has-error]="!bairro.valid && bairro.touched"
-      [class.has-feedback]="!bairro.valid && bairro.touched">
-      <label for="bairro" class="conrol-label">Bairro</label>
-      <input type="text" class="form-control" id="bairro" name="bairro" ngModel required #bairro="ngModel"
-      [ngClass]="aplicaCSSDeErro(bairro)" />
+          <app-field-control-erro 
+            [mostraErro]="verificaIfFieldValidAndTouched(estado)" 
+            msgErro="Estado is mandatory" >
+          </app-field-control-erro>
 
-      <app-field-control-erro 
-          [mostraErro]="verificaIfFieldValidAndTouched(bairro)" 
-          msgErro="Bairro is mandatory" >
-      </app-field-control-erro>
-      <!-- <div *ngIf="!bairro.valid && bairro.touched" class="alert alert-danger" role="alert">
-        Bairro is mandatory
-      </div>   -->
-  
+          <!-- <div *ngIf="!estado.valid && estado.touched" class="alert alert-danger" role="alert">
+            Estado is mandatory
+          </div>   -->
+        
+      </div>
+
     </div>
-
-    <div class="col-md-5 form-group " 
-      [class.has-error]="!cidade.valid && cidade.touched"
-      [class.has-feedback]="!cidade.valid && cidade.touched">
-      <label for="cidade" class="conrol-label">Cidade</label>
-      <input type="text" class="form-control" id="cidade" name="cidade" ngModel required #cidade="ngModel"
-        [ngClass]="aplicaCSSDeErro(cidade)"   readonly/>
-
-        <app-field-control-erro 
-          [mostraErro]="verificaIfFieldValidAndTouched(cidade)" 
-          msgErro="Cidade is mandatory" >
-        </app-field-control-erro>
-        <!-- <div *ngIf="!cidade.valid && cidade.touched" class="alert alert-danger" role="alert">
-          Cidade is mandatory
-        </div>   -->
-      
-    </div>   
-
-    <div class="col-md-4 form-group " 
-      [class.has-error]="!estado.valid && estado.touched"
-      [class.has-feedback]="!estado.valid && estado.touched">
-      <label for="estado" class="conrol-label">Estado</label>
-      <input type="text" class="form-control" id="estado" name="estado" ngModel required #estado="ngModel"
-        [ngClass]="aplicaCSSDeErro(estado)" />
-
-        <app-field-control-erro 
-          [mostraErro]="verificaIfFieldValidAndTouched(estado)" 
-          msgErro="Estado is mandatory" >
-        </app-field-control-erro>
-
-        <!-- <div *ngIf="!estado.valid && estado.touched" class="alert alert-danger" role="alert">
-          Estado is mandatory
-        </div>   -->
-      
     </div>
-  
-</div>
     <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button>
     <app-form-debug [form]="f"></app-form-debug>
   
