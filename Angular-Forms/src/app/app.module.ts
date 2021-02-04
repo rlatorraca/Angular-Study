@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //import { TemplateFormComponent } from './template-form/template-form.component';
 import { DataFormComponent } from './data-form/data-form.component';
 import { FormsModule } from '@angular/forms';
+//import { FieldControlErroComponent } from './field-control-erro/field-control-erro.component';
 
 @NgModule({
   declarations: [
