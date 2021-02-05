@@ -1,3 +1,4 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormDebugComponent } from './../form-debug/form-debug.component';
 import { TemplateFormComponent } from './template-form.component';
 import { NgModule } from '@angular/core';
@@ -10,12 +11,12 @@ import { FieldControlErroComponent} from '../field-control-erro/field-control-er
     TemplateFormComponent,
     FormDebugComponent,
     FieldControlErroComponent,
+    
   ],
   imports: [    
     CommonModule,
-    FormsModule,
-   
-    
+    FormsModule, 
+    HttpClientModule,
   ]
 })
 export class TemplateFormModule { }
