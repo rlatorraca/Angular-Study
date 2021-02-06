@@ -21,6 +21,8 @@ export class TemplateFormComponent implements OnInit {
 
   onSubmit(form) {
     console.log(this.usuario);
+    this.http.post('https://httpbin.org/post', JSON.stringify(form.value))
+      .subscribe(dados => console.log(dados));
   }
 
   verificaIfFieldValidAndTouched(field){
