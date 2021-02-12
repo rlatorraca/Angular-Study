@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-data-form',
@@ -11,9 +11,14 @@ export class DataFormComponent implements OnInit {
   formulario: FormGroup; // Representa o Formulario
   
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+
+    this.formulario = this.formBuilder.group({
+      nome: [null],
+      email: [null]
+    })
   }
 
 }
