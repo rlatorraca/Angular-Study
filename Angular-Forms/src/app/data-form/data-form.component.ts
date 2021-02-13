@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-data-form',
@@ -17,8 +17,8 @@ export class DataFormComponent implements OnInit {
   ngOnInit(): void {
 
     this.formulario = this.formBuilder.group({
-      nome: [null],
-      email: [null]
+      nome: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      email: [null, [Validators.email, Validators.required]]
     })
   }
 
@@ -29,7 +29,7 @@ export class DataFormComponent implements OnInit {
       console.log(dados)
       
       // reinicialzia o Formulario.
-      this.formulario.reset();
+      //this.formulario.reset();
     },
       (error: any)=> alert('erro')
     );
@@ -37,6 +37,26 @@ export class DataFormComponent implements OnInit {
 
   resetarForm(){
     this.formulario.reset();
+  }
+
+  aplicaCSSDeErro(field) {
+    return {
+      'is-invalid': this.verificaIfFieldValidAndTouched(field),
+      'has-feedback': this.verificaIfFieldValidAndTouched(field)
+    }
+  }
+
+  verificaIfFieldValidAndTouched(field){
+    return !this.formulario.get(field).valid && this.formulario.get(field).touched;
+  }
+
+  verificaEmailInvalido(){
+    let emailField = this.formulario.get('email');
+
+
+    if(emailField.errors){
+      return emailField.errors['email'] && emailField.touched;
+    }
   }
 
 }

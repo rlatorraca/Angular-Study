@@ -1,20 +1,32 @@
 
 <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()">
-    <div class="form-group" >
+    <div class="form-group" [ngClass]="aplicaCSSDeErro('nome')" >
      
         <label for="nome" class="form-control-label">Name</label>
         <input type="text" class="form-control" id="nome" placeholder="Enter your name" formControlName="nome"         />
-  
+        <app-field-control-erro 
+             [mostraErro]="verificaIfFieldValidAndTouched('nome')"              
+              msgErro="Nome is mandatory" >
+          </app-field-control-erro> 
     </div>
+
+    
   
-    <div class="form-group">
+    <div class="form-group" [ngClass]="aplicaCSSDeErro('email')" >
 
       <label for="email" class="form-control-label" >Email</label>
       <input type="email" class="form-control" id="email" placeholder="name@email.com" formControlName="email" /> 
+      <app-field-control-erro 
+          [mostraErro]="verificaIfFieldValidAndTouched('email')"              
+          msgErro="Email is mandatory" >
+       </app-field-control-erro>  
+       <app-field-control-erro 
+          [mostraErro]="verificaEmailInvalido()"              
+          msgErro="Email is invalid" >
+       </app-field-control-erro>  
                 
     </div>
-  
-   
+
      
       <button type="submit" class="btn btn-primary">Submit</button>
       <button type="button" class="btn" (click)="resetarForm()">Limpar</button>
