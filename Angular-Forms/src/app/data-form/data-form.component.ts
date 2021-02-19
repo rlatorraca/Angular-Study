@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-data-form',
@@ -15,17 +15,30 @@ export class DataFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
 
   ngOnInit(): void {
+    /* Usando FormGroup
+    this.formulario = new FormGroup({
+      nome: new FormControl(null),
+      email: new FormControl(null),
+      enndereco: new FormGroup({
+        cep: new FormGroup(null)
+      })
+    })
+    */
 
+    // Usando FormBuilder
     this.formulario = this.formBuilder.group({
       nome: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       email: [null, [Validators.email, Validators.required]],
-      cep: [null, Validators.required],
-      numero: [null, Validators.required],
-      complemento: [null],
-      rua: [null, Validators.required],
-      bairro: [null, Validators.required],
-      cidade: [null, Validators.required],
-      estado: [null, Validators.required],
+      endereco: this.formBuilder.group({
+        cep: [null, Validators.required],
+        numero: [null, Validators.required],
+        complemento: [null],
+        rua: [null, Validators.required],
+        bairro: [null, Validators.required],
+        cidade: [null, Validators.required],
+        estado: [null, Validators.required],
+      })
+      
     })
   }
 

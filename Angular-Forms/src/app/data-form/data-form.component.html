@@ -27,16 +27,16 @@
                 
     </div>
 
-    <div >
-        <div class="form-row ">   
+    <div formGroupName="endereco" >
+        <div class="form-row " >   
     
           <div class="col-md-3 form-group " >
             <label for="cep" class="conrol-label">CEP</label>
             <input type="text" class="form-control" id="cep" formControlName="cep" 
-              [ngClass]="aplicaCSSDeErro('cep')"  />
+              [ngClass]="aplicaCSSDeErro('endereco.cep')"  />
     
             <app-field-control-erro 
-                [mostraErro]="verificaIfFieldValidAndTouched('cep')" 
+                [mostraErro]="verificaIfFieldValidAndTouched('endereco.cep')" 
                 msgErro="CEP is mandatory" >
             </app-field-control-erro> 
             <!-- <div *ngIf="!cep.valid && cep.touched" class="alert alert-danger" role="alert">
@@ -48,10 +48,10 @@
           <div class="col-md-4 form-group " >
             <label for="numero" class="conrol-label">Número</label>
             <input type="text" class="form-control" id="numero" formControlName="numero" 
-              [ngClass]="aplicaCSSDeErro('numero')" />
+              [ngClass]="aplicaCSSDeErro('endereco.numero')" />
     
               <app-field-control-erro 
-                  [mostraErro]="verificaIfFieldValidAndTouched('numero')" 
+                  [mostraErro]="verificaIfFieldValidAndTouched('endereco.numero')" 
                   msgErro="Número is mandatory" >
               </app-field-control-erro>   
               
@@ -76,10 +76,10 @@
           <label for="rua" class="form-control-label" >Rua</label>
     
           <input type="rua" class="form-control" id="rua" placeholder="Avenida, Rua, Beco, Travessa, Passeio, etc" 
-            [ngClass]="aplicaCSSDeErro('rua')" formControlName="rua"   />
+            [ngClass]="aplicaCSSDeErro('endereco.rua')" formControlName="rua"   />
     
             <app-field-control-erro 
-                [mostraErro]="verificaIfFieldValidAndTouched('rua')" 
+                [mostraErro]="verificaIfFieldValidAndTouched('endereco.rua')" 
                 msgErro="Rua is mandatory" >
             </app-field-control-erro>
           
@@ -95,10 +95,10 @@
           <div class="col-md-3 form-group " >
             <label for="bairro" class="conrol-label">Bairro</label>
             <input type="text" class="form-control" id="bairro" formControlName="bairro" 
-            [ngClass]="aplicaCSSDeErro('bairro')" />
+            [ngClass]="aplicaCSSDeErro('endereco.bairro')" />
     
             <app-field-control-erro 
-                [mostraErro]="verificaIfFieldValidAndTouched('bairro')" 
+                [mostraErro]="verificaIfFieldValidAndTouched('endereco.bairro')" 
                 msgErro="Bairro is mandatory" >
             </app-field-control-erro>
             <!-- <div *ngIf="!bairro.valid && bairro.touched" class="alert alert-danger" role="alert">
@@ -110,10 +110,10 @@
           <div class="col-md-5 form-group " >
             <label for="cidade" class="conrol-label">Cidade</label>
             <input type="text" class="form-control" id="cidade"  formControlName="cidade" 
-              [ngClass]="aplicaCSSDeErro('cidade')"   readonly/>
+              [ngClass]="aplicaCSSDeErro('endereco.cidade')"   readonly/>
     
               <app-field-control-erro 
-                [mostraErro]="verificaIfFieldValidAndTouched('cidade')" 
+                [mostraErro]="verificaIfFieldValidAndTouched('endereco.cidade')" 
                 msgErro="Cidade is mandatory" >
               </app-field-control-erro>
               <!-- <div *ngIf="!cidade.valid && cidade.touched" class="alert alert-danger" role="alert">
@@ -125,10 +125,10 @@
           <div class="col-md-4 form-group " >
             <label for="estado" class="conrol-label">Estado</label>
             <input type="text" class="form-control" id="estado" formControlName="estado" 
-              [ngClass]="aplicaCSSDeErro('estado')" />
+              [ngClass]="aplicaCSSDeErro('endereco.estado')" />
     
               <app-field-control-erro 
-                [mostraErro]="verificaIfFieldValidAndTouched('estado')" 
+                [mostraErro]="verificaIfFieldValidAndTouched('endereco.estado')" 
                 msgErro="Estado is mandatory" >
               </app-field-control-erro>
     
