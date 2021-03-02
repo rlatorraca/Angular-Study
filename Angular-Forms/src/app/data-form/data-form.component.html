@@ -33,7 +33,8 @@
           <div class="col-md-3 form-group " >
             <label for="cep" class="conrol-label">CEP</label>
             <input type="text" class="form-control" id="cep" formControlName="cep" 
-              [ngClass]="aplicaCSSDeErro('endereco.cep')"  />
+              [ngClass]="aplicaCSSDeErro('endereco.cep')"               
+              (blur)="consultaCEP()"/>
     
             <app-field-control-erro 
                 [mostraErro]="verificaIfFieldValidAndTouched('endereco.cep')" 
