@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ControlContainer, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-data-form',
@@ -71,25 +71,47 @@ export class DataFormComponent implements OnInit {
    this.formulario.patchValue({
       endereco: {
         cep: dados.cep,
+        numero: dados.numero,
         complemento: dados.complemento,
         rua: dados.logradouro,
         bairro: dados.bairro,
         cidade: dados.localidade,
-        estado: dados.uf
+        estado: dados.uf,
       } 
     })
   } 
 
   onSubmit() {
     console.log(this.formulario.value);
-    this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
-    .subscribe(dados => {
-      console.log(dados)
+    
+    if(this.formulario.valid){
+      this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
+      .subscribe(dados => {
+        console.log(dados)
+        
+        // reinicialzia o Formulario.
+        //this.formulario.reset();
+      },
+        (error: any)=> alert('erro')
+      );
+    } else {
+      console.log("Invalido")
+      this.verificaAsValidacoesDoFormulario(this.formulario);
       
-      // reinicialzia o Formulario.
-      //this.formulario.reset();
-    },
-      (error: any)=> alert('erro')
+    }
+   
+  }
+
+  verificaAsValidacoesDoFormulario(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(
+      campo => {
+        console.log(campo);
+        const controle = formGroup.get(campo);
+        controle.markAsDirty();        
+        if (controle instanceof FormGroup){
+          this.verificaAsValidacoesDoFormulario(controle);
+        }
+      }
     );
   }
 
@@ -105,7 +127,7 @@ export class DataFormComponent implements OnInit {
   }
 
   verificaIfFieldValidAndTouched(field: string){
-    return !this.formulario.get(field).valid && this.formulario.get(field).touched;
+    return !this.formulario.get(field).valid && (this.formulario.get(field).touched || this.formulario.get(field).dirty);
   }
 
   verificaEmailInvalido(){
