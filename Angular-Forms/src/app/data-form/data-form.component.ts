@@ -72,8 +72,7 @@ export class DataFormComponent implements OnInit {
       //Valida o formato do CEP
       if (validaCEP.test(cep)){
 
-        this.http.get(`https://viacep.com.br/ws/${cep}/json`)
-            .subscribe(dados => this.populaDadosForm(dados)); 
+        this.http.get(`https://viacep.com.br/ws/${cep}/json`);
         
       }
 

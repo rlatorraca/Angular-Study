@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { DataFormModule } from './data-form/data-form.module';
 import { TemplateFormModule } from './template-form/template-form.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -24,7 +25,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     TemplateFormModule,
-    DataFormModule
+    DataFormModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
