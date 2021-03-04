@@ -22,6 +22,6 @@ import { FormsModule } from '@angular/forms';
     FormDebugComponent,
     FieldControlErroComponent   
   ],
-  providers:[ DropdownService ]
+  providers:[ ]
 })
 export class SharedModule { }

@@ -125,8 +125,9 @@
     
           <div class="col-md-4 form-group " >
             <label for="estado" class="conrol-label">Estado</label>
-            <input type="text" class="form-control" id="estado" formControlName="estado" 
-              [ngClass]="aplicaCSSDeErro('endereco.estado')" />
+            <select class="form-control" id="estado" formControlName="estado">
+              <option *ngFor="let estado of estados" [value]="estado.sigla">{{ estado.nome }}</option>
+            </select>
     
               <app-field-control-erro 
                 [mostraErro]="verificaIfFieldValidAndTouched('endereco.estado')" 
