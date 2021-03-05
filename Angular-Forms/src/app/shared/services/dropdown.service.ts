@@ -29,5 +29,17 @@ export class DropdownService {
     ]
   }
 
+  getTecnologias(){
+    return [
+      {nome: 'java', desc: "JAVA"},
+      {nome: 'net', desc: ".NET"},
+      {nome: 'python', desc: "Python"},
+      {nome: 'elixir', desc: "Elixir"},
+      {nome: 'c', desc: "C language"},
+      {nome: 'c++', desc: "C++ language"},
+      {nome: 'js', desc: "Vanilla Java Script"},
+
+    ]
+  }
 
 }
