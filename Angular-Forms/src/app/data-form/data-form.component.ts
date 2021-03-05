@@ -1,3 +1,4 @@
+import { Cargos } from './../shared/models/cargos';
 import { EstadoBrasil } from './../shared/models/EstadoBrasil.model';
 import { DropdownService } from './../shared/services/dropdown.service';
 import { HttpClient } from '@angular/common/http';
@@ -14,6 +15,7 @@ export class DataFormComponent implements OnInit {
 
   formulario: FormGroup; // Representa o Formulario
   estados: EstadoBrasil;
+  cargos: Cargos[];
 
   
 
@@ -40,6 +42,9 @@ export class DataFormComponent implements OnInit {
           this.estados = resposta;
           console.log(this.estados);
         });
+    
+    this.cargos = this.dropDownService.getCargos();
+      
         
     // Usando FormBuilder
     this.formulario = this.formBuilder.group({
@@ -53,9 +58,18 @@ export class DataFormComponent implements OnInit {
         bairro: [null, Validators.required],
         cidade: [null, Validators.required],
         estado: [null, Validators.required],
-      })
-      
+      }),
+      cargo: [null]
     })
+  }
+
+  setarCargo(){
+    const cargo = {nome: 'Developer', level: 'PL II', desc: "Pleno Developer II"};
+    this.formulario.get('cargo').setValue(cargo);
+  }
+
+  compararCargos(obj1, obj2){
+    return obj2 && obj2 ? (obj1.nome === obj2.nome && obj1.level === obj2.level) : obj1 === obj2;
   }
 
   consultaCEP(){

@@ -13,4 +13,21 @@ export class DropdownService {
   getEstadosBrasil(){
     return this.http.get<EstadoBrasil>('assets/dados/estadosBrasil.json') ;
   }
+
+
+  getCargos(){
+    return [
+      {nome: 'Developer', level: 'JR I', desc: "Jr Developer I"},
+      {nome: 'Developer', level: 'JR II', desc: "Jr Developer II"},
+      {nome: 'Developer', level: 'JR III', desc: "Jr Developer III"},
+      {nome: 'Developer', level: 'PL I ', desc: "Pleno Developer I"},
+      {nome: 'Developer', level: 'PL II', desc: "Pleno Developer II"},
+      {nome: 'Developer', level: 'PL III', desc: "Pleno Developer III"},
+      {nome: 'Developer', level: 'SR I', desc: "Senior Developer I"},
+      {nome: 'Developer', level: 'SR II', desc: "Senior Developer II"},
+      {nome: 'Developer', level: 'SR III', desc: "Senior Developer III"},
+    ]
+  }
+
+
 }
