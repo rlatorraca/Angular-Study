@@ -42,4 +42,10 @@ export class DropdownService {
     ]
   }
 
+  getNewsletter() {
+    return [
+      {nome: 'y', desc: "Yes"},
+      {nome: 'n', desc: "No"},
+    ]
+  }
 }

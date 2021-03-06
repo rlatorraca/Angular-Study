@@ -1,4 +1,5 @@
-import { Cargos } from './../shared/models/cargos';
+import { Tecnologia } from './../shared/models/Tecnologia';
+import { Cargo } from '../shared/models/Cargo';
 import { EstadoBrasil } from './../shared/models/EstadoBrasil.model';
 import { DropdownService } from './../shared/services/dropdown.service';
 import { HttpClient } from '@angular/common/http';
@@ -15,7 +16,9 @@ export class DataFormComponent implements OnInit {
 
   formulario: FormGroup; // Representa o Formulario
   estados: EstadoBrasil;
-  cargos: Cargos[];
+  cargos: Cargo[];
+  tecnologias: Tecnologia[];
+  newsletterOp: any[];
 
   
 
@@ -44,6 +47,8 @@ export class DataFormComponent implements OnInit {
         });
     
     this.cargos = this.dropDownService.getCargos();
+    this.tecnologias = this.dropDownService.getTecnologias();
+    this.newsletterOp= this.dropDownService.getNewsletter(); 
       
         
     // Usando FormBuilder
@@ -59,7 +64,9 @@ export class DataFormComponent implements OnInit {
         cidade: [null, Validators.required],
         estado: [null, Validators.required],
       }),
-      cargo: [null]
+      cargo: [null],
+      tecnologia: [null],
+      newsletter: ['n'],
     })
   }
 
@@ -68,8 +75,17 @@ export class DataFormComponent implements OnInit {
     this.formulario.get('cargo').setValue(cargo);
   }
 
+  setarTecnologia(){
+    //const cargo = {nome: 'Developer', level: 'PL II', desc: "Pleno Developer II"};
+    this.formulario.get('tecnologia').setValue(['java', 'javascript', 'php']);
+  }
+
   compararCargos(obj1, obj2){
     return obj2 && obj2 ? (obj1.nome === obj2.nome && obj1.level === obj2.level) : obj1 === obj2;
+  }
+
+  compararTecnologias(obj1, obj2){
+    return obj2 && obj2 ? (obj1.nome === obj2.nome && obj1.desc === obj2.desc) : obj1 === obj2;
   }
 
   consultaCEP(){

@@ -139,26 +139,44 @@
               </div>   -->
             
           </div>      
-          
+        </div>
+    </div>
+    <div class="row">  
+    
           <div class="col-md-4 form-group">
-            <label for="cargo" class="conrol-label">Cargo</label>
+            <label for="tecnologia" class="control-label">Tecnologia</label>
+            <select multiple class="form-control" id="tecnologia" formControlName="tecnologia" [compareWith]="compararTecnologias"
+              (change) = "setarTecnologia()">
+              <option  *ngFor="let tecnologia of tecnologias" [value]="tecnologia.nome">{{ tecnologia.desc }}</option>
+            </select>
+          </div>
+
+          <div class="col-md-4 form-group">
+            <label for="cargo" class="control-label">Cargo</label>
             <select class="form-control" id="cargo" formControlName="cargo" [compareWith]="compararCargos"
               (change) = "setarCargo()">
               <option *ngFor="let cargo of cargos" [ngValue]="cargo">{{ cargo.desc }}</option>
-            </select>
-    
-             
+            </select>             
           </div>
-    
-        </div>
 
-        
+          <div class="col-md-4 form-group">
+            <label for="newsletter" class="control-label">NewsLetter</label>
+            <div class="" id="newsletter">
+              <div class="col-sm 4" *ngFor="let item of newsletterOp" >
+                <label class="">
+                  <input type="radio" formControlName="newsletter" [value]="item.nome"/> {{ item.desc }}
+                </label>  
+              </div>
+                          
+          </div>      
       </div>
+    </div>
 
      
       <button type="submit" class="btn btn-primary">Submit</button>
-      <button type="button" class="btn" (click)="resetarForm()">Limpar</button>
-      <button type="button" class="btn" (click)="setarCargo()">Setar Cargo</button>
+      <button type="button" class="btn btn-default" (click)="resetarForm()">Limpar</button>
+      <button type="button" class="btn btn-info" (click)="setarCargo()">Setar Cargo</button>
+      <button type="button" class="btn btn-info" (click)="setarTecnologia()">Setar Tecnologia</button>
       <app-form-debug [form]="formulario"></app-form-debug>
     
   </form>
