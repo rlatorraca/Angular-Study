@@ -69,8 +69,13 @@ export class DataFormComponent implements OnInit {
       tecnologia: [null],
       newsletter: ['n'],
       termos: [null,Validators.requiredTrue],
-      frameworks: [ null ]
+      frameworks: this.buildFrameworks()
     })
+  }
+
+  buildFrameworks(){
+    const values = this.frameworks.map(v => new FormControl(false));
+    return this.formBuilder.array(values);
   }
 
   setarCargo(){
@@ -120,6 +125,16 @@ export class DataFormComponent implements OnInit {
 
   onSubmit() {
     console.log(this.formulario.value);
+
+    let valueSubmit = Object.assign({}, this.formulario.value);
+
+    valueSubmit = Object.assign(valueSubmit,{
+      frameworks: valueSubmit.frameworks
+        .map( (v,i) => v ? this.frameworks[i] : null)
+        .filter(v => v !== null)
+    })
+
+    console.log(valueSubmit);
     
     if(this.formulario.valid){
       this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
