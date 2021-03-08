@@ -19,6 +19,7 @@ export class DataFormComponent implements OnInit {
   cargos: Cargo[];
   tecnologias: Tecnologia[];
   newsletterOp: any[];
+  frameworks = ['Angular', 'React', 'Vue', 'Sencha'] ; 
 
   
 
@@ -67,6 +68,8 @@ export class DataFormComponent implements OnInit {
       cargo: [null],
       tecnologia: [null],
       newsletter: ['n'],
+      termos: [null,Validators.requiredTrue],
+      frameworks: [ null ]
     })
   }
 

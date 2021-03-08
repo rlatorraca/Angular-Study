@@ -154,7 +154,7 @@
           <div class="col-md-4 form-group">
             <label for="cargo" class="control-label">Cargo</label>
             <select class="form-control" id="cargo" formControlName="cargo" [compareWith]="compararCargos"
-              (change) = "setarCargo()">
+              (change) = "setarCargo()" [ngClass]="aplicaCSSDeErro('cargo')">
               <option *ngFor="let cargo of cargos" [ngValue]="cargo">{{ cargo.desc }}</option>
             </select>             
           </div>
@@ -170,6 +170,41 @@
                           
           </div>      
       </div>
+    </div>
+    <div class="form-group">
+      
+      <div class="col-md-4 form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" formControlName="termos"
+        [ngClass]="aplicaCSSDeErro('termos')"/>
+        <label class="form-check-label" for="inlineCheckbox1">Aceito os termos</label>
+      
+        <app-field-control-erro 
+          [mostraErro]="verificaIfFieldValidAndTouched('termos')" 
+          msgErro="Aceite os termos" >
+        </app-field-control-erro>
+      </div>
+      
+      
+      <div class="col-md-4 form-check form-check-inline ">
+        
+        <div id="frameworks">
+          <label class="row control-label" for="frameworks">Frameworks</label>
+          <div class="form-check form-check-inline col-sm-4">
+            <input class="form-check-input " type="checkbox" id="inlineCheckbox2" formControlName="frameworks">
+            <label class="form-check-label " for="inlineCheckbox2">Angular</label>            
+          </div>
+
+             
+          <app-field-control-erro 
+                [mostraErro]="verificaIfFieldValidAndTouched('termos')" 
+                msgErro="Aceite os termos" >
+            </app-field-control-erro>    
+          
+        </div>
+        
+      </div>
+
+      
     </div>
 
      
