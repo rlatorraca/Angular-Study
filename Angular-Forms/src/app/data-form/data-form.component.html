@@ -194,7 +194,12 @@
             <input class="form-check-input " type="checkbox" id="inlineCheckbox2" 
               [formControlName]="i" >
             <label class="form-check-label " for="inlineCheckbox2">{{ frameworks[i] }}</label>            
+            
           </div>
+          <app-field-control-erro 
+              [mostraErro]="verificaIfFieldValidAndTouched('frameworks')" 
+              msgErro="Selecione 2 opcoes" >
+            </app-field-control-erro>
 
         </div>
         

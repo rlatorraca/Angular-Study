@@ -1,10 +1,11 @@
+import { FormValidation } from './../shared/form-validation';
 import { Tecnologia } from './../shared/models/Tecnologia';
 import { Cargo } from '../shared/models/Cargo';
 import { EstadoBrasil } from './../shared/models/EstadoBrasil.model';
 import { DropdownService } from './../shared/services/dropdown.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ControlContainer, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ControlContainer, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ConsultaCepService } from '../shared/services/consulta-cep.service';
 
 @Component({
@@ -75,7 +76,7 @@ export class DataFormComponent implements OnInit {
 
   buildFrameworks(){
     const values = this.frameworks.map(v => new FormControl(false));
-    return this.formBuilder.array(values);
+    return this.formBuilder.array(values, FormValidation.requiredMinCheckbox(2));
   }
 
   setarCargo(){
@@ -122,6 +123,8 @@ export class DataFormComponent implements OnInit {
       } 
     })
   } 
+
+
 
   onSubmit() {
     console.log(this.formulario.value);
