@@ -37,8 +37,13 @@
               (blur)="consultaCEP()"/>
     
             <app-field-control-erro 
-                [mostraErro]="verificaIfFieldValidAndTouched('endereco.cep')" 
+                [mostraErro]="verificaRequired('endereco.cep')" 
                 msgErro="CEP is mandatory" >
+            </app-field-control-erro> 
+
+            <app-field-control-erro 
+                [mostraErro]="formulario.get('endereco.cep').hasError('cepInvalido')"
+                msgErro="CEP is invalid" >
             </app-field-control-erro> 
             <!-- <div *ngIf="!cep.valid && cep.touched" class="alert alert-danger" role="alert">
               CEP is mandatory

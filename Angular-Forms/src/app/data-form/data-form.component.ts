@@ -58,7 +58,7 @@ export class DataFormComponent implements OnInit {
       nome: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       email: [null, [Validators.email, Validators.required]],
       endereco: this.formBuilder.group({
-        cep: [null, Validators.required],
+        cep: [null, [Validators.required, FormValidation.cepValidator]],
         numero: [null, Validators.required],
         complemento: [null],
         rua: [null, Validators.required],
@@ -192,6 +192,13 @@ export class DataFormComponent implements OnInit {
     if(emailField.errors){
       return emailField.errors['email'] && emailField.touched;
     }
+  }
+
+  verificaRequired( field: string){
+    return (
+      this.formulario.get(field).hasError('required') &&
+      (this.formulario.get(field).touched || this.formulario.get(field).dirty)
+    );
   }
 
 }
