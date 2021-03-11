@@ -27,6 +27,18 @@
                 
     </div>
 
+    <div class="form-group" [ngClass]="aplicaCSSDeErro('confirmEmail')" >
+
+      <label for="confirmEmail" class="form-control-label" >Confirmar Email</label>
+      <input type="confirmEmail" class="form-control" id="confirmEmail" placeholder="name@email.com" formControlName="confirmEmail" /> 
+      <app-field-control-erro 
+          [mostraErro]="formulario.get('confirmEmail').hasError('equalsTo')"              
+          msgErro="Emails not match" >
+       </app-field-control-erro>  
+      
+                
+    </div>
+
     <div formGroupName="endereco" >
         <div class="form-row " >   
     

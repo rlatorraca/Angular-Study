@@ -1,4 +1,4 @@
-import { FormArray, FormControl } from "@angular/forms";
+import { FormArray, FormControl, FormGroup } from "@angular/forms";
 
 export class FormValidation {
 
@@ -33,5 +33,33 @@ export class FormValidation {
         }
         
         return null
+      }
+
+      static equalsTo(otherfield: string){
+        const validator = (formControl: FormControl) => {
+
+          if(otherfield == null){
+            throw new Error("It is mandatory informa a field to compare");
+          }
+
+          if(!formControl.root || !(<FormGroup>formControl.root).controls){
+            return null
+          }
+
+          const field = (<FormGroup>formControl.root).get(otherfield);
+
+          if (!field){
+            throw new Error('It is need to informa valid field');
+          }
+          console.log(field.value);
+          console.log(formControl.value);
+
+          if(field.value !== formControl.value){
+            return { equalsTo: otherfield};
+          }
+          return validator;
+        };
+
+        return validator;
       }
 }
