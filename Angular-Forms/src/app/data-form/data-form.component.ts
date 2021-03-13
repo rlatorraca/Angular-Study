@@ -1,3 +1,4 @@
+import { VerificaEmailService } from './services/verifica-email.service';
 import { FormValidation } from './../shared/form-validation';
 import { Tecnologia } from './../shared/models/Tecnologia';
 import { Cargo } from '../shared/models/Cargo';
@@ -7,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ControlContainer, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ConsultaCepService } from '../shared/services/consulta-cep.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-data-form',
@@ -27,7 +29,8 @@ export class DataFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, 
               private http: HttpClient, 
               private dropDownService: DropdownService,
-              private consultaService: ConsultaCepService) { }
+              private consultaService: ConsultaCepService,
+              private verificaEmailService: VerificaEmailService) { }
 
   ngOnInit(): void {
     /* Usando FormGroup
@@ -51,12 +54,13 @@ export class DataFormComponent implements OnInit {
     this.cargos = this.dropDownService.getCargos();
     this.tecnologias = this.dropDownService.getTecnologias();
     this.newsletterOp= this.dropDownService.getNewsletter(); 
-      
+     
+    //this.verificaEmailService.verificarEmail('email1@email.com').subscribe();
         
     // Usando FormBuilder
     this.formulario = this.formBuilder.group({
       nome: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-      email: [null, [Validators.email, Validators.required]],
+      email: [null, [Validators.email, Validators.required], [this.validarEmail.bind(this)]],
       confirmEmail: [null,[ FormValidation.equalsTo('email')]],
       endereco: this.formBuilder.group({
         cep: [null, [Validators.required, FormValidation.cepValidator]],
@@ -200,6 +204,13 @@ export class DataFormComponent implements OnInit {
       this.formulario.get(field).hasError('required') &&
       (this.formulario.get(field).touched || this.formulario.get(field).dirty)
     );
+  }
+
+  validarEmail(formControl: FormControl) {
+    return this.verificaEmailService.verificarEmail(formControl.value)
+      .pipe(
+        map(emailExiste => emailExiste ? { emailInvalido: true} : null)
+      );
   }
 
 }

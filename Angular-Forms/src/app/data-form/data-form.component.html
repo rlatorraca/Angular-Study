@@ -24,6 +24,18 @@
           [mostraErro]="verificaEmailInvalido()"              
           msgErro="Email is invalid" >
        </app-field-control-erro>  
+       <app-field-control-erro 
+          [mostraErro]="formulario.get('email').status === 'PENDING'"              
+           msgErro="Checking email ... " >
+       </app-field-control-erro>  
+       <app-field-control-erro 
+          [mostraErro]="formulario.get('email').status === 'VALID'"              
+           msgErro="Email is valid ... " >
+       </app-field-control-erro> 
+       <app-field-control-erro 
+          [mostraErro]="formulario.get('email').hasError('emailInvalido')"              
+           msgErro="Email is inserted on DB ... " >
+       </app-field-control-erro>  
                 
     </div>
 
