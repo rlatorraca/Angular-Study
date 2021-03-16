@@ -3,7 +3,7 @@
 
     <label for="nome" class="form-control-label">Name</label>
     <input type="text" class="form-control" id="nome" placeholder="Enter your name" formControlName="nome" />
-    <app-error-msg [mostraErro]="verificaIfFieldValidAndTouched('nome')" msgErro="Nome is mandatory">
+    <app-error-msg [control]="formulario.get('nome')" labelField="Nome">
     </app-error-msg>
   </div>
 

@@ -22,15 +22,15 @@ export class DataFormComponent implements OnInit {
   cargos: Cargo[];
   tecnologias: Tecnologia[];
   newsletterOp: any[];
-  frameworks = ['Angular', 'React', 'Vue', 'Sencha'] ; 
+  frameworks = ['Angular', 'React', 'Vue', 'Sencha'];
 
-  
 
-  constructor(private formBuilder: FormBuilder, 
-              private http: HttpClient, 
-              private dropDownService: DropdownService,
-              private consultaService: ConsultaCepService,
-              private verificaEmailService: VerificaEmailService) { }
+
+  constructor(private formBuilder: FormBuilder,
+    private http: HttpClient,
+    private dropDownService: DropdownService,
+    private consultaService: ConsultaCepService,
+    private verificaEmailService: VerificaEmailService) { }
 
   ngOnInit(): void {
     /* Usando FormGroup
@@ -46,22 +46,22 @@ export class DataFormComponent implements OnInit {
     // Populate the dropdowns
     //this.estados=[];
     this.dropDownService.getEstadosBrasil()
-      .subscribe( (resposta: EstadoBrasil)=>  {     
-          this.estados = resposta;
-          console.log(this.estados);
-        });
-    
+      .subscribe((resposta: EstadoBrasil) => {
+        this.estados = resposta;
+        console.log(this.estados);
+      });
+
     this.cargos = this.dropDownService.getCargos();
     this.tecnologias = this.dropDownService.getTecnologias();
-    this.newsletterOp= this.dropDownService.getNewsletter(); 
-     
+    this.newsletterOp = this.dropDownService.getNewsletter();
+
     //this.verificaEmailService.verificarEmail('email1@email.com').subscribe();
-        
+
     // Usando FormBuilder
     this.formulario = this.formBuilder.group({
-      nome: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      nome: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
       email: [null, [Validators.email, Validators.required], [this.validarEmail.bind(this)]],
-      confirmEmail: [null,[ FormValidation.equalsTo('email')]],
+      confirmEmail: [null, [FormValidation.equalsTo('email')]],
       endereco: this.formBuilder.group({
         cep: [null, [Validators.required, FormValidation.cepValidator]],
         numero: [null, Validators.required],
@@ -74,49 +74,49 @@ export class DataFormComponent implements OnInit {
       cargo: [null],
       tecnologia: [null],
       newsletter: ['n'],
-      termos: [null,Validators.requiredTrue],
+      termos: [null, Validators.requiredTrue],
       frameworks: this.buildFrameworks()
     })
   }
 
-  buildFrameworks(){
+  buildFrameworks() {
     const values = this.frameworks.map(v => new FormControl(false));
     return this.formBuilder.array(values, FormValidation.requiredMinCheckbox(2));
   }
 
-  setarCargo(){
-    const cargo = {nome: 'Developer', level: 'PL II', desc: "Pleno Developer II"};
+  setarCargo() {
+    const cargo = { nome: 'Developer', level: 'PL II', desc: "Pleno Developer II" };
     this.formulario.get('cargo').setValue(cargo);
   }
 
-  setarTecnologia(){
+  setarTecnologia() {
     //const cargo = {nome: 'Developer', level: 'PL II', desc: "Pleno Developer II"};
     this.formulario.get('tecnologia').setValue(['java', 'javascript', 'php']);
   }
 
-  compararCargos(obj1, obj2){
+  compararCargos(obj1, obj2) {
     return obj2 && obj2 ? (obj1.nome === obj2.nome && obj1.level === obj2.level) : obj1 === obj2;
   }
 
-  compararTecnologias(obj1, obj2){
+  compararTecnologias(obj1, obj2) {
     return obj2 && obj2 ? (obj1.nome === obj2.nome && obj1.desc === obj2.desc) : obj1 === obj2;
   }
 
-  consultaCEP(){
+  consultaCEP() {
 
     let cep = this.formulario.get('endereco.cep').value;
 
-    if(cep != null && cep !== ''){
-    
+    if (cep != null && cep !== '') {
+
       this.consultaService.consultaCEP(cep)
         .subscribe(dados => this.populaDadosForm(dados));
-        
+
     }
   }
 
-  populaDadosForm(dados){
+  populaDadosForm(dados) {
 
-   this.formulario.patchValue({
+    this.formulario.patchValue({
       endereco: {
         cep: dados.cep,
         numero: dados.numero,
@@ -125,9 +125,9 @@ export class DataFormComponent implements OnInit {
         bairro: dados.bairro,
         cidade: dados.localidade,
         estado: dados.uf,
-      } 
+      }
     })
-  } 
+  }
 
 
 
@@ -136,30 +136,30 @@ export class DataFormComponent implements OnInit {
 
     let valueSubmit = Object.assign({}, this.formulario.value);
 
-    valueSubmit = Object.assign(valueSubmit,{
+    valueSubmit = Object.assign(valueSubmit, {
       frameworks: valueSubmit.frameworks
-        .map( (v,i) => v ? this.frameworks[i] : null)
+        .map((v, i) => v ? this.frameworks[i] : null)
         .filter(v => v !== null)
     })
 
     console.log(valueSubmit);
-    
-    if(this.formulario.valid){
+
+    if (this.formulario.valid) {
       this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
-      .subscribe(dados => {
-        console.log(dados)
-        
-        // reinicialzia o Formulario.
-        //this.formulario.reset();
-      },
-        (error: any)=> alert('erro')
-      );
+        .subscribe(dados => {
+          console.log(dados)
+
+          // reinicialzia o Formulario.
+          //this.formulario.reset();
+        },
+          (error: any) => alert('erro')
+        );
     } else {
       console.log("Invalido")
       this.verificaAsValidacoesDoFormulario(this.formulario);
-      
+
     }
-   
+
   }
 
   verificaAsValidacoesDoFormulario(formGroup: FormGroup) {
@@ -167,15 +167,15 @@ export class DataFormComponent implements OnInit {
       campo => {
         console.log(campo);
         const controle = formGroup.get(campo);
-        controle.markAsDirty();        
-        if (controle instanceof FormGroup){
+        controle.markAsDirty();
+        if (controle instanceof FormGroup) {
           this.verificaAsValidacoesDoFormulario(controle);
         }
       }
     );
   }
 
-  resetarForm(){
+  resetarForm() {
     this.formulario.reset();
   }
 
@@ -186,20 +186,20 @@ export class DataFormComponent implements OnInit {
     }
   }
 
-  verificaIfFieldValidAndTouched(field: string){
+  verificaIfFieldValidAndTouched(field: string) {
     return !this.formulario.get(field).valid && (this.formulario.get(field).touched || this.formulario.get(field).dirty);
   }
 
-  verificaEmailInvalido(){
+  verificaEmailInvalido() {
     let emailField = this.formulario.get('email');
 
 
-    if(emailField.errors){
+    if (emailField.errors) {
       return emailField.errors['email'] && emailField.touched;
     }
   }
 
-  verificaRequired( field: string){
+  verificaRequired(field: string) {
     return (
       this.formulario.get(field).hasError('required') &&
       (this.formulario.get(field).touched || this.formulario.get(field).dirty)
@@ -209,7 +209,7 @@ export class DataFormComponent implements OnInit {
   validarEmail(formControl: FormControl) {
     return this.verificaEmailService.verificarEmail(formControl.value)
       .pipe(
-        map(emailExiste => emailExiste ? { emailInvalido: true} : null)
+        map(emailExiste => emailExiste ? { emailInvalido: true } : null)
       );
   }
 
