@@ -5,13 +5,15 @@ import { FormDebugComponent } from './form-debug/form-debug.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ErrorMsgComponent } from './error-msg/error-msg.component';
 
 
 
 @NgModule({
   declarations: [
     FormDebugComponent,
-    FieldControlErroComponent
+    FieldControlErroComponent,
+    ErrorMsgComponent,
   ],
   imports: [
     CommonModule,
@@ -20,8 +22,9 @@ import { FormsModule } from '@angular/forms';
   ],
   exports: [
     FormDebugComponent,
-    FieldControlErroComponent   
+    FieldControlErroComponent,
+    ErrorMsgComponent
   ],
-  providers:[ ]
+  providers: []
 })
 export class SharedModule { }
