@@ -8,7 +8,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ControlContainer, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ConsultaCepService } from '../shared/services/consulta-cep.service';
-import { map } from 'rxjs/operators';
+import { distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
+import { EMPTY } from 'rxjs/internal/observable/empty';
 
 @Component({
   selector: 'app-data-form',
@@ -76,8 +77,19 @@ export class DataFormComponent implements OnInit {
       newsletter: ['n'],
       termos: [null, Validators.requiredTrue],
       frameworks: this.buildFrameworks()
-    })
+    });
+
+    this.formulario.get('endereco.cep').statusChanges
+      .pipe(
+        distinctUntilChanged(),
+        switchMap(status => status === 'VALID' ?
+          this.consultaService.consultaCEP(this.formulario.get('endereco.cep').value)
+          : EMPTY)
+      )
+      .subscribe(dados => dados ? this.populaDadosForm(dados) : {});
+
   }
+
 
   buildFrameworks() {
     const values = this.frameworks.map(v => new FormControl(false));
