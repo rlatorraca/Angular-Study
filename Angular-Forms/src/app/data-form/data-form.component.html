@@ -1,12 +1,15 @@
 <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()">
-  <div class="form-group" [ngClass]="aplicaCSSDeErro('nome')">
+  <!-- <div class="form-group" [ngClass]="aplicaCSSDeErro('nome')">
 
     <label for="nome" class="form-control-label">Name</label>
     <input type="text" class="form-control" id="nome" placeholder="Enter your name" formControlName="nome" />
     <app-error-msg [control]="formulario.get('nome')" labelField="Nome">
     </app-error-msg>
-  </div>
+  </div> -->
 
+  <app-input-field formControlName="nome" [classeCss]="aplicaCSSDeErro('nome')" id="nome" label="Nome"
+    [control]="formulario.get('nome')">
+  </app-input-field>
 
 
   <div class="form-group" [ngClass]="aplicaCSSDeErro('email')">

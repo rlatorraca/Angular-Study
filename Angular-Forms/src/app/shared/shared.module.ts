@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ErrorMsgComponent } from './error-msg/error-msg.component';
+import { InputFieldComponent } from './input-field/input-field.component';
 
 
 
@@ -14,6 +15,7 @@ import { ErrorMsgComponent } from './error-msg/error-msg.component';
     FormDebugComponent,
     FieldControlErroComponent,
     ErrorMsgComponent,
+    InputFieldComponent,
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { ErrorMsgComponent } from './error-msg/error-msg.component';
   exports: [
     FormDebugComponent,
     FieldControlErroComponent,
-    ErrorMsgComponent
+    ErrorMsgComponent,
+    InputFieldComponent,
   ],
   providers: []
 })
