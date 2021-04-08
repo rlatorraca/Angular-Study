@@ -1,3 +1,4 @@
+import { BaseFormComponent } from './../shared/base-form/base-form.component';
 import { VerificaEmailService } from './services/verifica-email.service';
 import { FormValidation } from './../shared/form-validation';
 import { Tecnologia } from './../shared/models/Tecnologia';
@@ -16,9 +17,10 @@ import { EMPTY } from 'rxjs/internal/observable/empty';
   templateUrl: './data-form.component.html',
   styleUrls: ['./data-form.component.css']
 })
-export class DataFormComponent implements OnInit {
+export class DataFormComponent extends BaseFormComponent implements OnInit {
 
-  formulario: FormGroup; // Representa o Formulario
+
+  // formulario: FormGroup; // Representa o Formulario
   estados: EstadoBrasil;
   cargos: Cargo[];
   tecnologias: Tecnologia[];
@@ -31,7 +33,9 @@ export class DataFormComponent implements OnInit {
     private http: HttpClient,
     private dropDownService: DropdownService,
     private consultaService: ConsultaCepService,
-    private verificaEmailService: VerificaEmailService) { }
+    private verificaEmailService: VerificaEmailService) {
+    super();
+  }
 
   ngOnInit(): void {
     /* Usando FormGroup
@@ -141,9 +145,7 @@ export class DataFormComponent implements OnInit {
     })
   }
 
-
-
-  onSubmit() {
+  submit() {
     console.log(this.formulario.value);
 
     let valueSubmit = Object.assign({}, this.formulario.value);
@@ -156,67 +158,17 @@ export class DataFormComponent implements OnInit {
 
     console.log(valueSubmit);
 
-    if (this.formulario.valid) {
-      this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
-        .subscribe(dados => {
-          console.log(dados)
+    this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
+      .subscribe(dados => {
+        console.log(dados)
 
-          // reinicialzia o Formulario.
-          //this.formulario.reset();
-        },
-          (error: any) => alert('erro')
-        );
-    } else {
-      console.log("Invalido")
-      this.verificaAsValidacoesDoFormulario(this.formulario);
-
-    }
-
+        // reinicialzia o Formulario.
+        //this.formulario.reset();
+      },
+        (error: any) => alert('erro')
+      );
   }
 
-  verificaAsValidacoesDoFormulario(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach(
-      campo => {
-        console.log(campo);
-        const controle = formGroup.get(campo);
-        controle.markAsDirty();
-        if (controle instanceof FormGroup) {
-          this.verificaAsValidacoesDoFormulario(controle);
-        }
-      }
-    );
-  }
-
-  resetarForm() {
-    this.formulario.reset();
-  }
-
-  aplicaCSSDeErro(field: string) {
-    return {
-      'is-invalid': this.verificaIfFieldValidAndTouched(field),
-      'has-feedback': this.verificaIfFieldValidAndTouched(field)
-    }
-  }
-
-  verificaIfFieldValidAndTouched(field: string) {
-    return !this.formulario.get(field).valid && (this.formulario.get(field).touched || this.formulario.get(field).dirty);
-  }
-
-  verificaEmailInvalido() {
-    let emailField = this.formulario.get('email');
-
-
-    if (emailField.errors) {
-      return emailField.errors['email'] && emailField.touched;
-    }
-  }
-
-  verificaRequired(field: string) {
-    return (
-      this.formulario.get(field).hasError('required') &&
-      (this.formulario.get(field).touched || this.formulario.get(field).dirty)
-    );
-  }
 
   validarEmail(formControl: FormControl) {
     return this.verificaEmailService.verificarEmail(formControl.value)
@@ -224,5 +176,4 @@ export class DataFormComponent implements OnInit {
         map(emailExiste => emailExiste ? { emailInvalido: true } : null)
       );
   }
-
 }

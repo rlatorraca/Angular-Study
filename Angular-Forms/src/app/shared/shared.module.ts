@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ErrorMsgComponent } from './error-msg/error-msg.component';
 import { InputFieldComponent } from './input-field/input-field.component';
+import { BaseFormComponent } from './base-form/base-form.component';
 
 
 
@@ -26,7 +27,7 @@ import { InputFieldComponent } from './input-field/input-field.component';
     FormDebugComponent,
     FieldControlErroComponent,
     ErrorMsgComponent,
-    InputFieldComponent,
+    InputFieldComponent
   ],
   providers: []
 })
