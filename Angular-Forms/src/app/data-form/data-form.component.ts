@@ -92,6 +92,14 @@ export class DataFormComponent extends BaseFormComponent implements OnInit {
       )
       .subscribe(dados => dados ? this.populaDadosForm(dados) : {});
 
+    this.formulario.get('endereco.estado').valueChanges
+      .pipe(
+        tap(estado => console.log(estado)),
+        map(estado => this.estados.filter(e => e.sigla === estado)),
+        map(estados => estados && estados.length > 0 ? estados[0])
+      )
+      .subscribe();
+
   }
 
 
