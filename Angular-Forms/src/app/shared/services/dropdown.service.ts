@@ -13,7 +13,7 @@ export class DropdownService {
   constructor(private http: HttpClient) { }
 
   getEstadosBrasil() {
-    return this.http.get<EstadoBrasil>('assets/dados/estadosBrasil.json');
+    return this.http.get<EstadoBrasil[]>('assets/dados/estadosBrasil.json');
   }
 
   getCidades(idEstado: number) {
@@ -21,7 +21,7 @@ export class DropdownService {
       .pipe(
         map((cidades: CidadesBrasil[]) => cidades.filter(c => c.estado === idEstado))
       )
-    ;
+      ;
   }
 
 

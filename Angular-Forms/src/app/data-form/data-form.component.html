@@ -120,19 +120,20 @@
 
       </div>
 
-      <div class="col-md-5 form-group ">
+      <!-- <div class="col-md-5 form-group ">
         <label for="cidade" class="conrol-label">Cidade</label>
         <input type="text" class="form-control" id="cidade" formControlName="cidade"
           [ngClass]="aplicaCSSDeErro('endereco.cidade')" readonly />
 
         <app-field-control-erro [mostraErro]="verificaIfFieldValidAndTouched('endereco.cidade')"
           msgErro="Cidade is mandatory">
-        </app-field-control-erro>
-        <!-- <div *ngIf="!cidade.valid && cidade.touched" class="alert alert-danger" role="alert">
+        </app-field-control-erro> -->
+      <!-- <div *ngIf="!cidade.valid && cidade.touched" class="alert alert-danger" role="alert">
                 Cidade is mandatory
               </div>   -->
 
-      </div>
+      <!--</div> -->
+
 
       <div class="col-md-4 form-group ">
         <label for="estado" class="conrol-label">Estado</label>
@@ -149,6 +150,23 @@
               </div>   -->
 
       </div>
+
+      <div class="col-md-4 form-group ">
+        <label for="cidade" class="conrol-label">Cidade</label>
+        <select class="form-control" id="cidade" formControlName="cidade">
+          <option *ngFor="let cidade of cidades" [value]="cidade.nome">{{ cidade.nome }}</option>
+        </select>
+
+        <app-field-control-erro [mostraErro]="verificaIfFieldValidAndTouched('endereco.cidade')"
+          msgErro="Estado is mandatory">
+        </app-field-control-erro>
+
+        <!-- <div *ngIf="!estado.valid && estado.touched" class="alert alert-danger" role="alert">
+                Estado is mandatory
+              </div>   -->
+
+      </div>
+
     </div>
   </div>
   <div class="row">
