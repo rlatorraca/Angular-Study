@@ -1,0 +1,20 @@
+{
+  "courses": [
+    {
+      "id": 1,
+      "nome": "AngularJS"
+    },
+    {
+      "id": 2,
+      "nome": "Jquery"
+    },
+    {
+      "id": 3,
+      "nome": "NextJS"
+    },
+    {
+      "id": 4,
+      "nome": "ReactJS"
+    }
+  ]
+}
