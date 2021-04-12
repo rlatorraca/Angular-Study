@@ -1,4 +1,4 @@
-import { tap } from 'rxjs/operators';
+import { tap, delay } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Course } from './list-courses/Course';
@@ -18,6 +18,7 @@ export class CourseService {
   list() {
     return this.http.get<Course[]>(this.API)
       .pipe(
+        delay(3000),
         tap(console.log)
       );
   }
