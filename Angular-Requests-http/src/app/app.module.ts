@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoursesModule } from './courses/courses.module';
+import { UnsubscribeRxjsModule } from './unsubscribe-rxjs/unsubscribe-rxjs.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { CoursesModule } from './courses/courses.module';
     BrowserModule,
     AppRoutingModule,
     CoursesModule,
-    HttpClientModule
+    HttpClientModule,
+    UnsubscribeRxjsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
