@@ -14,7 +14,7 @@ import { Observable } from 'rxjs';
 export class PocAsyncComponent implements OnInit, OnDestroy {
 
   nome = 'Componente com async';
-  valor$: Observable<string>;
+  valor$: Observable<any>;
 
   constructor(private service: EnviarValorService) { }
 

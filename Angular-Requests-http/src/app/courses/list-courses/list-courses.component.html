@@ -5,10 +5,11 @@
     </div>
     <div class="float-right">
       <button type="button" class="btn btn-primary" [routerLink]="['novo']">Novo Curso</button>
+      <button type="button" class="btn btn-secondary" (click)="onRefresh()">Atualizar</button>
     </div>
   </div>
   <div class="card-body">
-    <table class="table table-hover" *ngIf="courses$ | async as courses; else loading">
+    <table class="table table-hover" *ngIf="courses$ | async as courses; else loadingError">
       <thead>
         <tr>
           <th>#</th>
@@ -35,8 +36,11 @@
       </tbody>
     </table>
 
-    <ng-template #loading>
-      <span> Looading Courses/Programs</span>
+    <ng-template #loadingError>
+      <div *ngIf="error$ | async; else loading"> Erro loading course(s) / program(s). You could try later. </div>
+      <ng-template #loading>
+        <span> Looading Courses/Programs</span>
+      </ng-template>
     </ng-template>
   </div>
 </div>
