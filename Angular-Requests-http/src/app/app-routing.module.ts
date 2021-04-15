@@ -2,6 +2,7 @@ import { UnsubscribeRxjsModule } from './unsubscribe-rxjs/unsubscribe-rxjs.modul
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'courses' },
   { path: 'courses', loadChildren: './courses/courses.module#CoursesModule' },
