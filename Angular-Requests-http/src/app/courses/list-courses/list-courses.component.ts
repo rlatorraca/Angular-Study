@@ -1,3 +1,4 @@
+import { AlertModalService } from './../../shared/alert-modal.service';
 import { Observable, Subject } from 'rxjs';
 import { CourseService } from './../course.service';
 import { Component, OnInit } from '@angular/core';
@@ -14,14 +15,16 @@ import { AlertModelComponent } from 'src/app/shared/alert-model/alert-model.comp
 })
 export class ListCoursesComponent implements OnInit {
 
-  bsModalRef: BsModalRef;
+  //bsModalRef: BsModalRef;
 
   //courses: Course[] = [];
   courses$!: Observable<Course[]>;
   error$ = new Subject<boolean>();
 
   constructor(private service: CourseService,
-    private modalService: BsModalService) {
+    private alertModalService: AlertModalService
+    //private modalService: BsModalService
+  ) {
 
   }
 
@@ -52,9 +55,10 @@ export class ListCoursesComponent implements OnInit {
   }
 
   handle_Error() {
-    this.bsModalRef = this.modalService.show(AlertModelComponent);
-    this.bsModalRef.content.type = 'danger';
-    this.bsModalRef.content.message = 'Error loading course(s) / program(s). You could try later.';
+    this.alertModalService.showAlertDanger('Error loading course(s) / program(s). You could try later.');
+    //this.bsModalRef = this.modalService.show(AlertModelComponent);
+    //this.bsModalRef.content.type = 'danger';
+    //this.bsModalRef.content.message = 'Error loading course(s) / program(s). You could try later.';
   }
 
 }
