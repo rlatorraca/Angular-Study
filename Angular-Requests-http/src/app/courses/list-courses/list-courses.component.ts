@@ -46,12 +46,12 @@ export class ListCoursesComponent implements OnInit {
         })
       );
 
-    this.service.list().subscribe(
-      data => { console.log(data) },
-      error => console.error(error),
-      () => console.log('Observable complete!')
+    // this.service.list().subscribe(
+    //   data => { console.log(data) },
+    //   error => console.error(error),
+    //   () => console.log('Observable complete!')
 
-    );
+    // );
   }
 
   handle_Error() {
