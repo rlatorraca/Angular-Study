@@ -1,5 +1,8 @@
+import { AlertModalService } from './../../shared/alert-modal.service';
+import { CourseService } from './../course.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-courses-form',
@@ -11,7 +14,10 @@ export class CoursesFormComponent implements OnInit {
   form: FormGroup;
   submitted: boolean = false;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+    private service: CourseService,
+    private modal: AlertModalService,
+    private location: Location) { }
 
   ngOnInit(): void {
 
@@ -27,15 +33,23 @@ export class CoursesFormComponent implements OnInit {
     return this.form.get(field)?.errors;
   }
 
-  onSubmit(){
+  onSubmit() {
     this.submitted = true;
     console.log(this.form.value);
-    if(this.form.valid) {
+    if (this.form.valid) {
       console.log('submit');
+      this.service.create(this.form.value).subscribe(
+        success => {
+          this.modal.showAlertSuccess('Good job! Course / Program created');
+          this.location.back();
+        },
+        error => this.modal.showAlertDanger('Oups...some wrong when creating a course / program'),
+        () => console.log('Request completed')
+      );
     }
   }
 
-  onCancel(){
+  onCancel() {
     this.submitted = false;
     this.form.reset();
     console.log('onCancel');

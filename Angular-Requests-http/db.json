@@ -2,19 +2,27 @@
   "courses": [
     {
       "id": 1,
-      "nome": "AngularJS"
+      "name": "AngularJS"
     },
     {
       "id": 2,
-      "nome": "Jquery"
+      "name": "Jquery"
     },
     {
       "id": 3,
-      "nome": "NextJS"
+      "name": "NextJS"
     },
     {
       "id": 4,
-      "nome": "ReactJS"
+      "name": "ReactJS"
+    },
+    {
+      "name": "Flutter",
+      "id": 5
+    },
+    {
+      "name": "Elixir",
+      "id": 6
     }
   ]
 }
