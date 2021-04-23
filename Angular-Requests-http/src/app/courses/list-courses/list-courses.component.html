@@ -26,7 +26,7 @@
           <td>{{ curso.name }}</td>
           <td>
             <span class="float-right">
-              <button class="btn btn-outline-warning mb-1 btn-sm">
+              <button class="btn btn-outline-warning mb-1 btn-sm" (click)="onEdit(curso.id)">
                 Update
               </button>
               {{ " " }}
@@ -40,7 +40,8 @@
     </table>
 
     <ng-template #loadingError>
-      <div *ngIf="error$ | async; else loading"> Error loading course(s) / program(s). You could try later. </div>
+      <div *ngIf=" error$ | async; else loading"> Error loading course(s) / program(s). You could try later.
+      </div>
       <ng-template #loading>
         <span> Looading Courses/Programs</span>
       </ng-template>

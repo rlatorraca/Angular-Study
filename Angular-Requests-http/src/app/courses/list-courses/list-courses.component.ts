@@ -7,6 +7,7 @@ import { catchError } from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AlertModelComponent } from 'src/app/shared/alert-model/alert-model.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-courses',
@@ -22,7 +23,9 @@ export class ListCoursesComponent implements OnInit {
   error$ = new Subject<boolean>();
 
   constructor(private service: CourseService,
-    private alertModalService: AlertModalService
+    private alertModalService: AlertModalService,
+    private router: Router,
+    private route: ActivatedRoute
     //private modalService: BsModalService
   ) {
 
@@ -59,6 +62,10 @@ export class ListCoursesComponent implements OnInit {
     //this.bsModalRef = this.modalService.show(AlertModelComponent);
     //this.bsModalRef.content.type = 'danger';
     //this.bsModalRef.content.message = 'Error loading course(s) / program(s). You could try later.';
+  }
+
+  onEdit(id: any) {
+    this.router.navigate(['edit', id], { relativeTo: this.route })
   }
 
 }
