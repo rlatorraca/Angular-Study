@@ -35,35 +35,35 @@ export class CoursesFormComponent implements OnInit {
 
     // )
 
-    this.route.params
-      .pipe(
-        map((params: any) => params['id']),
-        switchMap((id: string) => this.service.loadById(id))
-        //switchMap((course => obterAulas(id))
+    // this.route.params
+    //   .pipe(
+    //     map((params: any) => params['id']),
+    //     switchMap((id: string) => this.service.loadById(id))
+    //     //switchMap((course => obterAulas(id))
 
-        // concatMap => ordem da requisicao importa
-        // mergeMap => ordem nao importa
-        // exhaustMap => casos de login (solicita e espera a resposta)
-      )
-      .subscribe(course => this.updateForm(course));
+    //     // concatMap => ordem da requisicao importa
+    //     // mergeMap => ordem nao importa
+    //     // exhaustMap => casos de login (solicita e espera a resposta)
+    //   )
+    //   .subscribe(course => this.updateForm(course));
 
 
-
+    const course = this.route.snapshot.data['course'];
 
 
     this.form = this.fb.group({
-      id: [null],
-      name: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(250)]]
+      id: [course.id],
+      name: [course.name, [Validators.required, Validators.minLength(3), Validators.maxLength(250)]]
     });
 
   }
 
-  updateForm(course: any) {
-    this.form.patchValue({
-      id: course.id,
-      name: course.name
-    })
-  }
+  // updateForm(course: any) {
+  //   this.form.patchValue({
+  //     id: course.id,
+  //     name: course.name
+  //   })
+  // }
 
   get name() { return this.form.get('name'); }
 

@@ -24,7 +24,8 @@ export class CourseService {
   }
 
   loadById(id: string) {
-    return this.http.get(`${this.API}/${id}`).pipe(take(1))
+    //return this.http.get(`${this.API}/${id}`).pipe(take(1))
+    return this.http.get<Course>(`${this.API}/${id}`).pipe(take(1));
   }
 
   create(course: Course) {
