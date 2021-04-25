@@ -6,7 +6,7 @@
     },
     {
       "id": 2,
-      "name": "Jquery"
+      "name": "Jquery 3.2.3"
     },
     {
       "id": 3,
@@ -27,6 +27,14 @@
     {
       "id": 7,
       "name": "Angular 11"
+    },
+    {
+      "id": 8,
+      "name": "C++ 2018"
+    },
+    {
+      "id": 9,
+      "name": "AutoCAD 2021"
     }
   ]
 }

@@ -75,15 +75,48 @@ export class CoursesFormComponent implements OnInit {
     this.submitted = true;
     console.log(this.form.value);
     if (this.form.valid) {
-      console.log('submit');
-      this.service.create(this.form.value).subscribe(
+
+      let msgSuccess = 'Good job! Course / Program CREATED successfully';
+      let msgSError = 'Oops...some wrong when CREATING a course / program';
+
+      if(this.form.value.id) {
+        msgSuccess = 'Good job! Course / Program UPDATED successfully';
+        msgSError = 'Oops...some wrong when UPDATING a course / program'
+      }
+
+      this.service.save(this.form.value).subscribe(
         success => {
-          this.modal.showAlertSuccess('Good job! Course / Program created');
+          this.modal.showAlertSuccess(msgSuccess);
           this.location.back();
         },
-        error => this.modal.showAlertDanger('Oups...some wrong when creating a course / program'),
-        () => console.log('Request completed')
+        error => this.modal.showAlertDanger(msgSError),
+        () => console.log('Updating is complete')
       );
+
+      /*
+    if (this.form.valid) {
+      if(this.form.value.id) {
+        // Update Course
+        this.service.update(this.form.value).subscribe(
+          success => {
+            this.modal.showAlertSuccess('Good job! Course / Program updated successfully');
+            this.location.back();
+          },
+          error => this.modal.showAlertDanger('Oups...some wrong when updating a course / program'),
+          () => console.log('Updating is complete')
+        );
+      } else {
+        // Create Course
+        this.service.create(this.form.value).subscribe(
+          success => {
+            this.modal.showAlertSuccess('Good job! Course / Program created');
+            this.location.back();
+          },
+          error => this.modal.showAlertDanger('Oups...some wrong when creating a course / program'),
+          () => console.log('Creating is complete')
+        );
+      }
+      */
     }
   }
 
