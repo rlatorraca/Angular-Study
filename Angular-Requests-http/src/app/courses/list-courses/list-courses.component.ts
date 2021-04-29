@@ -1,14 +1,15 @@
-import { AlertModalService } from './../../shared/alert-modal.service';
+
 import { Observable, Subject } from 'rxjs';
-import { CourseService } from './../course.service';
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Course } from './Course';
 import { catchError, delay, switchMap, take } from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
 import { Location } from '@angular/common';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { AlertModelComponent } from 'src/app/shared/alert-model/alert-model.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Course2Service } from '../course2.service';
+import { AlertModalService } from 'src/app/shared/alert-modal.service';
 
 @Component({
   selector: 'app-list-courses',
@@ -27,9 +28,9 @@ export class ListCoursesComponent implements OnInit {
   courses$!: Observable<Course[]>;
   error$ = new Subject<boolean>();
 
-  courseSelected : Course;
+  courseSelected: Course;
 
-  constructor(private service: CourseService,
+  constructor(private service: Course2Service,
     private alertModalService: AlertModalService,
     private router: Router,
     private location: Location,
@@ -83,7 +84,7 @@ export class ListCoursesComponent implements OnInit {
     result$.asObservable()
       .pipe(
         take(1),
-        switchMap(result => result ?  this.service.delete(this.courseSelected) : EMPTY)
+        switchMap(result => result ? this.service.delete(this.courseSelected) : EMPTY)
       ).subscribe(
         success => {
           this.onRefresh();
@@ -91,27 +92,27 @@ export class ListCoursesComponent implements OnInit {
         error => {
           this.alertModalService.showAlertDanger('Error DELETING course(s) / program(s). You could try later.');
         },
-       
+
       );
   }
 
   onConfirmDelete() {
     this.service.delete(this.courseSelected)
-    .subscribe(
-      success => {
-        this.onRefresh();
-        this.alertModalService.showAlertSuccess("Successfully Deleted");
-        this.deleteModalRef.hide();
-      },
-      error => {
-        this.alertModalService.showAlertDanger('Error DELETING course(s) / program(s). You could try later.');
-        this.deleteModalRef.hide();
-      },
-      () => console.log('DELETING is complete')
-    );
+      .subscribe(
+        success => {
+          this.onRefresh();
+          this.alertModalService.showAlertSuccess("Successfully Deleted");
+          this.deleteModalRef.hide();
+        },
+        error => {
+          this.alertModalService.showAlertDanger('Error DELETING course(s) / program(s). You could try later.');
+          this.deleteModalRef.hide();
+        },
+        () => console.log('DELETING is complete')
+      );
   }
 
-  onDeclineDelete(){
+  onDeclineDelete() {
     this.deleteModalRef.hide();
   }
 

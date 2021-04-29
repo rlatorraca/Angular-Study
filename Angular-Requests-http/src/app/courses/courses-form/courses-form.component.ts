@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { concatMap, map, switchMap } from 'rxjs/operators';
+import { Course2Service } from '../course2.service';
 
 @Component({
   selector: 'app-courses-form',
@@ -17,7 +18,7 @@ export class CoursesFormComponent implements OnInit {
   submitted: boolean = false;
 
   constructor(private fb: FormBuilder,
-    private service: CourseService,
+    private service: Course2Service,
     private modal: AlertModalService,
     private location: Location,
     private route: ActivatedRoute) { }
@@ -79,7 +80,7 @@ export class CoursesFormComponent implements OnInit {
       let msgSuccess = 'Good job! Course / Program CREATED successfully';
       let msgSError = 'Oops...some wrong when CREATING a course / program';
 
-      if(this.form.value.id) {
+      if (this.form.value.id) {
         msgSuccess = 'Good job! Course / Program UPDATED successfully';
         msgSError = 'Oops...some wrong when UPDATING a course / program'
       }
