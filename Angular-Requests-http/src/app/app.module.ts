@@ -1,3 +1,4 @@
+import { UploadFileModule } from './upload-file/upload-file.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,7 +23,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';;
     UnsubscribeRxjsModule,
     SharedModule,
     ModalModule.forRoot(),
-    SharedModule
+    UploadFileModule
   ],
   providers: [],
   bootstrap: [AppComponent]
