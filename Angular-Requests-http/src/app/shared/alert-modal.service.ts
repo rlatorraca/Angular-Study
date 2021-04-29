@@ -19,6 +19,9 @@ export enum AlerTypes {
   providedIn: 'root'
 })
 export class AlertModalService {
+  // showConfirm(arg0: string, arg1: string, arg2: string, arg3: string) {
+  //   throw new Error('Method not implemented.');
+  // }
 
   constructor(private modalService: BsModalService) { }
 
@@ -40,20 +43,21 @@ export class AlertModalService {
     }
   }
 
-  showConfirm(title: string, msg: string, okBtn?: string, cancelBtn?: string) {
+  showConfirm(title: string, msg: string, okTxt?: string, cancelTxt?: string) {
     const bsModalRef: BsModalRef = this.modalService.show(ConfirmModalComponent);
-
     bsModalRef.content.title = title;
     bsModalRef.content.msg = msg;
 
-    if(okBtn){
-      bsModalRef.content.okBtn = okBtn;
+    if (okTxt) {
+      bsModalRef.content.okTxt = okTxt;
     }
 
-    if(cancelBtn){
-      bsModalRef.content.cancelBtn = cancelBtn;
+    if (cancelTxt) {
+      bsModalRef.content.cancelTxt = cancelTxt;
+
     }
 
     return (<ConfirmModalComponent>bsModalRef.content).confirmResult;
   }
+
 }
