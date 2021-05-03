@@ -21,8 +21,8 @@ export class ListCoursesComponent implements OnInit {
   //bsModalRef: BsModalRef;
   deleteModalRef: BsModalRef;
 
-  @ViewChild('deleteModal') deleteModal: any;
-  //@ViewChild('deleteModal', { static: true }) deleteModal:any;
+  //@ViewChild('deleteModal') deleteModal: any;
+  @ViewChild('deleteModal', { static: true }) deleteModal: any;
 
   //courses: Course[] = [];
   courses$!: Observable<Course[]>;
