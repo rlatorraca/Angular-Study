@@ -1,31 +1,28 @@
+
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const multipart = require('connect-multiparty');
 
-
 const app = express();
-
-app.use(bodyParser.json);
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const corsOptions = {
   origin: '*',
-  optionsSuccessStatus: 200,
-}
-
+  optionsSuccessStatus: 200
+};
 app.use(cors(corsOptions));
 
-const multipartyMiddleware = multipart ({uploadDir:'./uploads'});
-
-app.post('./upload', multipartyMiddleware, (request, response) => {
-  const files = request.files;
+const multipartMiddleware = multipart({ uploadDir: './uploads' });
+app.post('/upload', multipartMiddleware, (req, res) => {
+  const files = req.files;
   console.log(files);
-  response.json({message : "Files uploaded successfully"})
-})
+  res.json({ message: files });
+});
 
-app.use((err, request, response, next) => response.json({error: err.message}));
+app.use((err, req, res, next) => res.json({error: err.message}));
 
 app.listen(8000, () => {
-  console.log("Server UP and RUNNING on port 8000");
-});
+  console.log('Server on port 8000');
+})
