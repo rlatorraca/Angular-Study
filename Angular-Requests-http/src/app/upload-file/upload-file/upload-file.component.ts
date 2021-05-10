@@ -71,4 +71,20 @@ export class UploadFileComponent implements OnInit {
       //   });
     }
   }
+
+  // tslint:disable-next-line: typedef
+  onDownloadExcel() {
+    this.service.download(environment.BASE_URL + '/downloadExcel')
+    .subscribe((res: any) => {
+      this.service.handleFile(res, 'report.xlsx');
+    });
+  }
+
+  // tslint:disable-next-line: typedef
+  onDownloadPDF() {
+    this.service.download(environment.BASE_URL + '/downloadPDF')
+    .subscribe((res: any) => {
+      this.service.handleFile(res, 'report.pdf');
+    });
+  }
 }
