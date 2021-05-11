@@ -31,11 +31,11 @@ export class ListCoursesComponent implements OnInit {
   courseSelected: Course;
 
   constructor(private service: Course2Service,
-    private alertModalService: AlertModalService,
-    private router: Router,
-    private location: Location,
-    private route: ActivatedRoute,
-    private modalService: BsModalService
+              private alertModalService: AlertModalService,
+              private router: Router,
+              private location: Location,
+              private route: ActivatedRoute,
+              private modalService: BsModalService
   ) {
 
   }

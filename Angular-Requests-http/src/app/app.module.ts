@@ -1,5 +1,5 @@
 import { UploadFileModule } from './upload-file/upload-file.module';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -9,7 +9,7 @@ import { CoursesModule } from './courses/courses.module';
 import { UnsubscribeRxjsModule } from './unsubscribe-rxjs/unsubscribe-rxjs.module';
 import { SharedModule } from './shared/shared.module';
 
-import { ModalModule } from 'ngx-bootstrap/modal';;
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
