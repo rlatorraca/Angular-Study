@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'upload' },
+  { path: '', pathMatch: 'full', redirectTo: 'reactive-search' },
   {
     path: 'courses',
     loadChildren: () => import('./courses/courses.module').then(m => m.CoursesModule)
@@ -19,7 +19,13 @@ const routes: Routes = [
     path: 'rxjs-poc',
     loadChildren: () => import('./unsubscribe-rxjs/unsubscribe-rxjs.module').then(m => m.UnsubscribeRxjsModule)
     //loadChildren: './unsubscribe-rxjs/unsubscribe-rxjs.module#UnsubscribeRxjsModule' 
+  },
+  {
+    path: 'reactive-search',
+    loadChildren: () => import('./reactive-search/reactive-search.module').then(m => m.ReactiveSearchModule)
+    //loadChildren: './unsubscribe-rxjs/unsubscribe-rxjs.module#UnsubscribeRxjsModule' 
   }
+
 ];
 
 @NgModule({
