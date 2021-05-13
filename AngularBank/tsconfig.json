@@ -1,0 +1,14 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "target": "es6",
+        "outDir": "alurabank/app/js",
+        "noEmitOnError": true
+    },
+    "include": [
+        "alurabank/app/ts/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+    ]
+}
