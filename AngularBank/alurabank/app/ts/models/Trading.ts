@@ -1,6 +1,7 @@
 class Trading {
 
     constructor(date, quantity, value) {
+        // _ : diz que o atributo é PRIVATE
         this._date = date;
         this._quantity = quantity;
         this._value = value;
