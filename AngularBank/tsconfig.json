@@ -3,7 +3,8 @@
     "compilerOptions": {
         "target": "es6",
         "outDir": "alurabank/app/js",
-        "noEmitOnError": true
+        "noEmitOnError": true,
+        "noImplicitAny": true
     },
     "include": [
         "alurabank/app/ts/**/*"
