@@ -1,4 +1,4 @@
 const controller = new TradingController();
 document
     .querySelector('form')
-    .addEventListener('submit', controller.adicionar.bind(controller));
+    .addEventListener('submit', controller.add.bind(controller));
