@@ -9,11 +9,13 @@ class TradingController {
     private _inputQuantity: HTMLInputElement;
     private _inputValue: HTMLInputElement;
     private _trades: Trades = new Trades();
+    private _tradesView = new TradesView('#tradesViews');
 
     constructor() {
         this._inputDate = <HTMLInputElement>document.querySelector('#date');
         this._inputQuantity = <HTMLInputElement>document.querySelector('#quantity');
         this._inputValue = <HTMLInputElement>document.querySelector('#value');
+        this._tradesView.update();
     }
 
     adicionar(event: Event) {
@@ -25,11 +27,11 @@ class TradingController {
             parseFloat(this._inputValue.value)
         );
         this._trades.add(tradeIn);
-        
+
         // apaga o array
-        this._trades.paraArray().length = 0; // acabou de apagar!
-        
-        this._trades.toArray().forEach(trade =>{
+        this._trades.toArray().length = 0; // acabou de apagar!
+
+        this._trades.toArray().forEach(trade => {
             console.log(trade.date);
             console.log(trade.quantity);
             console.log(trade.value);
