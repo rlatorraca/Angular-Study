@@ -1,11 +1,8 @@
-class TradesView {
-    constructor(selectorCSS) {
-        this._element = document.querySelector(selectorCSS);
+class TradesView extends View {
+    update(model) {
+        this._element.innerHTML = this.template(model);
     }
-    update() {
-        this._element.innerHTML = this.template();
-    }
-    template() {
+    template(model) {
         return `
         <table class="table table-hover table-bordered">
             <thead>
@@ -18,8 +15,18 @@ class TradesView {
             </thead>
 
             <tbody>
+                ${model.toArray().map(trade => {
+            return `   
+                    <tr>
+                        <td>${trade.date.getDate()}/${trade.date.getMonth() + 1}/${trade.date.getFullYear()}</td>
+                        <td>${trade.quantity}</td>
+                        <td>${trade.value}</td>
+                        <td>${trade.volume}</td>
+                    </tr>                        
+                `;
+        }).join('')}   
             </tbody>
-
+               
             <tfoot>
             </tfoot>
          </table> `;

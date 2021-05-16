@@ -10,15 +10,17 @@ class TradingController {
     private _inputValue: HTMLInputElement;
     private _trades: Trades = new Trades();
     private _tradesView = new TradesView('#tradesViews');
+    private _messageView = new MessageView('#messageView');
 
     constructor() {
         this._inputDate = <HTMLInputElement>document.querySelector('#date');
         this._inputQuantity = <HTMLInputElement>document.querySelector('#quantity');
         this._inputValue = <HTMLInputElement>document.querySelector('#value');
-        this._tradesView.update();
+         // atualiza a view para exibir os dados do modelo, vazio
+        this._tradesView.update(this._trades);        
     }
 
-    adicionar(event: Event) {
+    add(event: Event) {
         event.preventDefault();
 
         const tradeIn = new TradeIn(
@@ -31,13 +33,18 @@ class TradingController {
         // apaga o array
         this._trades.toArray().length = 0; // acabou de apagar!
 
-        this._trades.toArray().forEach(trade => {
-            console.log(trade.date);
-            console.log(trade.quantity);
-            console.log(trade.value);
-            console.log(trade.volume);
-        });
-        console.log(tradeIn);
+        // this._trades.toArray().forEach(trade => {
+        //     console.log(trade.date);
+        //     console.log(trade.quantity);
+        //     console.log(trade.value);
+        //     console.log(trade.volume);
+        // });
+        
+        //console.log(tradeIn);
+
+        // depois de adicionar, atualiza a view novamente para refletir os dados
+        this._tradesView.update(this._trades);
+        this._messageView.update('Trade In properly included');
     }
 
     get inputDate() {
