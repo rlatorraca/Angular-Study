@@ -1,0 +1,9 @@
+{
+    "port": 4000,
+    "files": [
+        "./alurabank/app/**/*.{html,htm,css,js}"
+    ],
+    "server": {
+        "baseDir": "./alurabank/app"
+    }
+}
