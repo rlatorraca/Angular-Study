@@ -13,11 +13,11 @@ export abstract class View<T> {
         this._escape = escape;
     }
 
-    update(model: T) {
+    update(model: T, alertColor: T) {
         //this._element.innerHTML = this.template(model);
         // Usando Jquery
-        let template = this.template(model);
-        if(this._escape) 
+        let template = this.template(model, alertColor);
+        if (this._escape)
             template = template.replace(/<script>[\s\S]*?<\/script>/, '');
 
         this._element.html(template);
@@ -28,6 +28,6 @@ export abstract class View<T> {
     //     throw new Error('You have to implement template method')
     // }
 
-    abstract template(model: T): string;
+    abstract template(model: T, alertColor: T): string;
 
 }

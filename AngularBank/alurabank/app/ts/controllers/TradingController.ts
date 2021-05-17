@@ -36,7 +36,7 @@ export class TradingController {
 
     add(event: Event) {
         event.preventDefault();
-
+        const t1 = performance.now();
         const tradeIn = new TradeIn(
             // new Date(this._inputDate.value.replace(/-/g, '/')), // switch -' to ','
             // parseInt(this._inputQuantity.value),
@@ -62,8 +62,10 @@ export class TradingController {
         //console.log(tradeIn);
 
         // depois de adicionar, atualiza a view novamente para refletir os dados
-        this._tradesView.update(this._trades);
+        this._tradesView.update(this._trades, );
         this._messageView.update('Trade In properly included');
+        const t2 = performance.now();
+        console.log(`Tempo de execução do método adiciona(): ${(t2 - t1) / 1000} segundos`);
     }
 
     get inputDate() {
