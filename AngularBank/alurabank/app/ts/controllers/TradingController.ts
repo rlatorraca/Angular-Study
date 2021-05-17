@@ -15,8 +15,8 @@ class TradingController {
     private _inputValue: JQuery;
 
     private _trades: Trades = new Trades();
-    private _tradesView = new TradesView('#tradesViews');
-    private _messageView = new MessageView('#messageView');
+    private _tradesView = new Views.TradesView('#tradesViews');
+    private _messageView = new Views.MessageView('#messageView');
 
     constructor() {
         // this._inputDate = <HTMLInputElement>document.querySelector('#date');
