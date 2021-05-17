@@ -1,7 +1,5 @@
-import { TradeIn } from "../models/TradeIn";
-import { Trades } from "../models/Trades";
-import { MessageView } from "../views/MessageView";
-import { TradesView } from "../views/TradesView";
+import { TradeIn, Trades } from "../models/index";
+import { MessageView, TradesView } from "../views/index";
 
 export class TradingController {
     // ==> GENERIC

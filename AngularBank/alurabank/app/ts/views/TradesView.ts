@@ -1,4 +1,4 @@
-import { Trades } from "../models/Trades";
+import { Trades } from "../models/index";
 import { View } from "./View";
 
 export class TradesView extends View<Trades> {

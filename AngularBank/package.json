@@ -6,15 +6,19 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "tsc",
-    "start": "tsc -w"
+    "watch": "tsc -w",
+    "server": "lite-server --baseDir=app",
+    "start": "concurrently \"npm run watch\" \"npm run server\""
   },
   "author": "Rodrigo Latorraca",
   "license": "ISC",
   "dependencies": {
+    "concurrently": "^6.1.0",
     "save-dev": "0.0.1-security",
     "typescript": "^4.2.4"
   },
   "devDependencies": {
-    "@types/jquery": "^2.0.42"
+    "@types/jquery": "^2.0.56",
+    "lite-server": "^2.6.1"
   }
 }
