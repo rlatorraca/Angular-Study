@@ -12,6 +12,9 @@ export class TradeIn {
     //     this._value = value;
     // }
 
+    // Pode ser Construido com REANDONLY e nao precisamos do GETTERS
+    // constructor(readonly data: Date, readonly quantidade: number, readonly valor: number) {}
+
     // ==> NEW 
     constructor(private _date: Date, private _quantity: number, private _value: number) {
 
