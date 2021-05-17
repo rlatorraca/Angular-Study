@@ -13,5 +13,8 @@
   "dependencies": {
     "save-dev": "0.0.1-security",
     "typescript": "^4.2.4"
+  },
+  "devDependencies": {
+    "@types/jquery": "^2.0.42"
   }
 }

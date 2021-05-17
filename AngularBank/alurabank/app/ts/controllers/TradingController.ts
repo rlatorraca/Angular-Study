@@ -5,28 +5,44 @@ class TradingController {
     // private _inputValue: Element;
 
     // Specific
-    private _inputDate: HTMLInputElement;
-    private _inputQuantity: HTMLInputElement;
-    private _inputValue: HTMLInputElement;
+    // private _inputDate: HTMLInputElement;
+    // private _inputQuantity: HTMLInputElement;
+    // private _inputValue: HTMLInputElement;
+
+    // Using Jquery
+    private _inputDate: JQuery;
+    private _inputQuantity: JQuery;
+    private _inputValue: JQuery;
+
     private _trades: Trades = new Trades();
     private _tradesView = new TradesView('#tradesViews');
     private _messageView = new MessageView('#messageView');
 
     constructor() {
-        this._inputDate = <HTMLInputElement>document.querySelector('#date');
-        this._inputQuantity = <HTMLInputElement>document.querySelector('#quantity');
-        this._inputValue = <HTMLInputElement>document.querySelector('#value');
-         // atualiza a view para exibir os dados do modelo, vazio
-        this._tradesView.update(this._trades);        
+        // this._inputDate = <HTMLInputElement>document.querySelector('#date');
+        // this._inputQuantity = <HTMLInputElement>document.querySelector('#quantity');
+        // this._inputValue = <HTMLInputElement>document.querySelector('#value');
+
+        // Using Jquery
+        this._inputDate = $('#date');
+        this._inputQuantity = $('#quantity');
+        this._inputValue = $('#value');
+        // atualiza a view para exibir os dados do modelo, vazio
+        this._tradesView.update(this._trades);
     }
 
     add(event: Event) {
         event.preventDefault();
 
         const tradeIn = new TradeIn(
-            new Date(this._inputDate.value.replace(/-/g, '/')), // switch -' to ','
-            parseInt(this._inputQuantity.value),
-            parseFloat(this._inputValue.value)
+            // new Date(this._inputDate.value.replace(/-/g, '/')), // switch -' to ','
+            // parseInt(this._inputQuantity.value),
+            // parseFloat(this._inputValue.value)
+
+            //Using Jquery
+            new Date(this._inputDate.val().replace(/-/g, '/')), // switch -' to ','
+            parseInt(this._inputQuantity.val()),
+            parseFloat(this._inputValue.val())
         );
         this._trades.add(tradeIn);
 
@@ -39,7 +55,7 @@ class TradingController {
         //     console.log(trade.value);
         //     console.log(trade.volume);
         // });
-        
+
         //console.log(tradeIn);
 
         // depois de adicionar, atualiza a view novamente para refletir os dados

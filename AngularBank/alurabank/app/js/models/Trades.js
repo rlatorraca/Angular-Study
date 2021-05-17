@@ -1,6 +1,5 @@
 class Trades {
     constructor() {
-        //private _trades: Array<TradeIn> = [];
         this._trades = [];
     }
     add(tradeIn) {
