@@ -3,9 +3,10 @@ import { View } from "./View";
 export class MessageView extends View<string> {
 
 
-    template(model: string): string {
+    template(model: string, alertColor: string): string {
 
-        return `<p class="alert alert-info">${model}</p>`;
+        alert(alertColor);
+        return `<p class="alert ${alertColor}">${model}</p>`;
     }
 }
 
