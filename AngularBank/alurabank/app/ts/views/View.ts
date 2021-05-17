@@ -1,18 +1,20 @@
-class View<T> {
+abstract class View<T> {
 
-    protected _element: Element;
+    private _element: Element;
 
 
-    constructor(selector: string){
+    constructor(selector: string) {
         this._element = document.querySelector(selector);
     }
 
-    update(model: T){
+    update(model: T) {
         this._element.innerHTML = this.template(model);
     }
 
-    template(model: T): string {
-        
-       throw new Error('You have to implement template method')
-    }
+    // template(model: T): string {
+
+    //     throw new Error('You have to implement template method')
+    // }
+
+    abstract template(model: T): string;
 }
