@@ -1,8 +1,12 @@
-class TradingController {
+import { TradeIn } from "../models/TradeIn";
+import { Trades } from "../models/Trades";
+import { MessageView } from "../views/MessageView";
+import { TradesView } from "../views/TradesView";
+export class TradingController {
     constructor() {
         this._trades = new Trades();
-        this._tradesView = new Views.TradesView('#tradesViews');
-        this._messageView = new Views.MessageView('#messageView');
+        this._tradesView = new TradesView('#tradesViews');
+        this._messageView = new MessageView('#messageView');
         this._inputDate = $('#date');
         this._inputQuantity = $('#quantity');
         this._inputValue = $('#value');

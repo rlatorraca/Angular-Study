@@ -1,4 +1,6 @@
-class Trades {
+import { TradeIn } from "./TradeIn";
+
+export class Trades {
     
     //private _trades: Array<TradeIn> = [];
     private _trades: TradeIn[] = [];

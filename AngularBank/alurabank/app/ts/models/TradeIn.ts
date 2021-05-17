@@ -1,4 +1,4 @@
-class TradeIn {
+export class TradeIn {
 
     // ==> OLD
     // private _date: Date;

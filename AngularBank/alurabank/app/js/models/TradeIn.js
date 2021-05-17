@@ -1,4 +1,4 @@
-class TradeIn {
+export class TradeIn {
     constructor(_date, _quantity, _value) {
         this._date = _date;
         this._quantity = _quantity;

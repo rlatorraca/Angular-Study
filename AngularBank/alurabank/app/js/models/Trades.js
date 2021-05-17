@@ -1,4 +1,4 @@
-class Trades {
+export class Trades {
     constructor() {
         this._trades = [];
     }

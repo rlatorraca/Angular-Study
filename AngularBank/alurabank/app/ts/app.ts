@@ -1,3 +1,5 @@
+import { TradingController } from "./controllers/TradingController";
+
 const controller = new TradingController();
 
 

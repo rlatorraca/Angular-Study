@@ -1,4 +1,9 @@
-class TradingController {
+import { TradeIn } from "../models/TradeIn";
+import { Trades } from "../models/Trades";
+import { MessageView } from "../views/MessageView";
+import { TradesView } from "../views/TradesView";
+
+export class TradingController {
     // ==> GENERIC
     // private _inputDate: Element;
     // private _inputQuantity: Element;
@@ -15,8 +20,8 @@ class TradingController {
     private _inputValue: JQuery;
 
     private _trades: Trades = new Trades();
-    private _tradesView = new Views.TradesView('#tradesViews');
-    private _messageView = new Views.MessageView('#messageView');
+    private _tradesView = new TradesView('#tradesViews');
+    private _messageView = new MessageView('#messageView');
 
     constructor() {
         // this._inputDate = <HTMLInputElement>document.querySelector('#date');
