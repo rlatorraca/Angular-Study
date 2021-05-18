@@ -10,7 +10,7 @@ export class Trades {
     }
 
     toArray(): TradeIn[] {
-        return [].concat(this._trades);
+        return ([] as TradeIn[]).concat(this._trades);
     }
 
 }
