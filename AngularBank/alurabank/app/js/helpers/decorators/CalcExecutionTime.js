@@ -5,8 +5,15 @@ System.register([], function (exports_1, context_1) {
         return function (target, propertyKey, descriptor) {
             const originalMethod = descriptor.value;
             descriptor.value = function (...args) {
-                const retorno = originalMethod.apply(this, args);
-                return retorno;
+                console.log('-----------------------');
+                console.log(`Method Parameters ${propertyKey}: ${JSON.stringify(args)}`);
+                const t1 = performance.now();
+                const result = originalMethod.apply(this, args);
+                console.log(`Method Result : ${JSON.stringify(result)}`);
+                const t2 = performance.now();
+                console.log(`${propertyKey} spent ${t2 - t1} ms`);
+                console.log('-----------------------');
+                return result;
             };
             return descriptor;
         };

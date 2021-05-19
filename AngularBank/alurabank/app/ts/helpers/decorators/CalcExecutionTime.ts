@@ -11,9 +11,19 @@ export function CalcExecutionTime() {
 
         descriptor.value = function (...args: any[]) {
 
+            console.log('-----------------------')
+            console.log(`Method Parameters ${propertyKey}: ${JSON.stringify(args)}`);
+            const t1 = performance.now();
+
             // this => Objeto no qual o METODO esta sendo passado
-            const retorno = originalMethod.apply(this, args);
-            return retorno;
+            const result = originalMethod.apply(this, args);
+
+            console.log(`Method Result : ${JSON.stringify(result)}`)
+            const t2 = performance.now();
+            console.log(`${propertyKey} spent ${t2 - t1} ms`);
+            console.log('-----------------------')
+
+            return result;
         }
 
         return descriptor;
