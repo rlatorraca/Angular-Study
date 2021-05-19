@@ -1,3 +1,6 @@
+import { CalcExecutionTime } from "../helpers/decorators/index";
+
+
 export abstract class View<T> {
 
     //private _element: Element;
@@ -13,7 +16,9 @@ export abstract class View<T> {
         this._escape = escape;
     }
 
+    @CalcExecutionTime()
     update(model: T, alertColor?: T) {
+
         //this._element.innerHTML = this.template(model);
         // Usando Jquery
         let template = this.template(model, alertColor);
@@ -21,6 +26,7 @@ export abstract class View<T> {
             template = template.replace(/<script>[\s\S]*?<\/script>/, '');
 
         this._element.html(template);
+
     }
 
     // template(model: T): string {

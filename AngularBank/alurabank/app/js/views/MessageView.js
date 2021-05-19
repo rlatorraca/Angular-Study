@@ -11,7 +11,6 @@ System.register(["./View"], function (exports_1, context_1) {
         execute: function () {
             MessageView = class MessageView extends View_1.View {
                 template(model, alertColor) {
-                    alert(alertColor);
                     return `<p class="alert ${alertColor}">${model}</p>`;
                 }
             };

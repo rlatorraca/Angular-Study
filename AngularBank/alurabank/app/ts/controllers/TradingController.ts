@@ -1,3 +1,5 @@
+
+import { CalcExecutionTime } from "../helpers/decorators/index";
 import { TradeIn, Trades } from "../models/index";
 import { MessageView, TradesView } from "../views/index";
 
@@ -34,7 +36,9 @@ export class TradingController {
         this._tradesView.update(this._trades);
     }
 
+    @CalcExecutionTime()
     add(event: Event) {
+
         event.preventDefault();
 
         let date = new Date(this._inputDate.val().replace(/-/g, '/')); // switch -' to ','
@@ -72,6 +76,7 @@ export class TradingController {
         // depois de adicionar, atualiza a view novamente para refletir os dados
         this._tradesView.update(this._trades);
         this._messageView.update('Trade In properly included', 'alert-info');
+
     }
 
     get inputDate() {

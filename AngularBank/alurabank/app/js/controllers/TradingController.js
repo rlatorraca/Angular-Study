@@ -1,6 +1,12 @@
-System.register(["../models/index", "../views/index"], function (exports_1, context_1) {
+System.register(["../helpers/decorators/index", "../models/index", "../views/index"], function (exports_1, context_1) {
     "use strict";
-    var index_1, index_2, TradingController, DaysOfWeek;
+    var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+    var index_1, index_2, index_3, TradingController, DaysOfWeek;
     var __moduleName = context_1 && context_1.id;
     return {
         setters: [
@@ -9,14 +15,17 @@ System.register(["../models/index", "../views/index"], function (exports_1, cont
             },
             function (index_2_1) {
                 index_2 = index_2_1;
+            },
+            function (index_3_1) {
+                index_3 = index_3_1;
             }
         ],
         execute: function () {
             TradingController = class TradingController {
                 constructor() {
-                    this._trades = new index_1.Trades();
-                    this._tradesView = new index_2.TradesView('#tradesViews');
-                    this._messageView = new index_2.MessageView('#messageView');
+                    this._trades = new index_2.Trades();
+                    this._tradesView = new index_3.TradesView('#tradesViews');
+                    this._messageView = new index_3.MessageView('#messageView');
                     this._inputDate = $('#date');
                     this._inputQuantity = $('#quantity');
                     this._inputValue = $('#value');
@@ -29,7 +38,7 @@ System.register(["../models/index", "../views/index"], function (exports_1, cont
                         this._messageView.update("Trade In just permitted in business day", "alert-danger");
                         return;
                     }
-                    const tradeIn = new index_1.TradeIn(date, parseInt(this._inputQuantity.val()), parseFloat(this._inputValue.val()));
+                    const tradeIn = new index_2.TradeIn(date, parseInt(this._inputQuantity.val()), parseFloat(this._inputValue.val()));
                     this._trades.add(tradeIn);
                     this._tradesView.update(this._trades);
                     this._messageView.update('Trade In properly included', 'alert-info');
@@ -47,6 +56,9 @@ System.register(["../models/index", "../views/index"], function (exports_1, cont
                     return date.getDay() != DaysOfWeek.Saturday && date.getDay() != DaysOfWeek.Sunday;
                 }
             };
+            __decorate([
+                index_1.CalcExecutionTime()
+            ], TradingController.prototype, "add", null);
             exports_1("TradingController", TradingController);
             (function (DaysOfWeek) {
                 DaysOfWeek[DaysOfWeek["Sunday"] = 0] = "Sunday";
