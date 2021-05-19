@@ -36,7 +36,7 @@ export class TradingController {
         this._tradesView.update(this._trades);
     }
 
-    @CalcExecutionTime()
+    @CalcExecutionTime(true)
     add(event: Event) {
 
         event.preventDefault();

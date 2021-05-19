@@ -1,4 +1,4 @@
-export function CalcExecutionTime() {
+export function CalcExecutionTime(seconds: boolean = false) {
 
     // Decorator
     //  - deve retornar outra Funcao
@@ -11,6 +11,13 @@ export function CalcExecutionTime() {
 
         descriptor.value = function (...args: any[]) {
 
+            let divisor = 1;
+            let unit = 'miliseconds'
+            if (seconds) {
+                divisor = 1000;
+                unit = 'seconds';
+            }
+
             console.log('-----------------------')
             console.log(`Method Parameters ${propertyKey}: ${JSON.stringify(args)}`);
             const t1 = performance.now();
@@ -20,7 +27,7 @@ export function CalcExecutionTime() {
 
             console.log(`Method Result : ${JSON.stringify(result)}`)
             const t2 = performance.now();
-            console.log(`${propertyKey} spent ${t2 - t1} ms`);
+            console.log(`Method ${propertyKey} spent ${(t2 - t1) / divisor} ${unit}`);
             console.log('-----------------------')
 
             return result;

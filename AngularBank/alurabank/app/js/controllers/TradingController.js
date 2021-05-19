@@ -57,7 +57,7 @@ System.register(["../helpers/decorators/index", "../models/index", "../views/ind
                 }
             };
             __decorate([
-                index_1.CalcExecutionTime()
+                index_1.CalcExecutionTime(true)
             ], TradingController.prototype, "add", null);
             exports_1("TradingController", TradingController);
             (function (DaysOfWeek) {
