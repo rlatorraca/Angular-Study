@@ -7,7 +7,7 @@ export function domInject(selector: string) {
 
         const getter = function () {
 
-            // cHeca se ja pegou o elemento do DOM
+            // Checa se ja pegou o elemento do DOM
             if (!element) {
                 console.log(`Searching  ${selector} to inject in ${key}`);
                 element = $(selector);
