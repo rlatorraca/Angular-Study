@@ -1,8 +1,9 @@
 
-import { CalcExecutionTime, domInject } from "../helpers/decorators/index";
+import { domInject, myClassDecorator } from "../helpers/decorators/index";
 import { TradeIn, Trades } from "../models/index";
 import { MessageView, TradesView } from "../views/index";
 
+@myClassDecorator()
 export class TradingController {
     // ==> GENERIC
     // private _inputDate: Element;
@@ -111,4 +112,8 @@ enum DaysOfWeek {
     Thursday,
     Friday,
     Saturday
+}
+
+function myClassErrorDecorator() {
+    throw new Error("Function not implemented.");
 }
