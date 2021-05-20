@@ -1,5 +1,5 @@
 
-import { CalcExecutionTime } from "../helpers/decorators/index";
+import { CalcExecutionTime, domInject } from "../helpers/decorators/index";
 import { TradeIn, Trades } from "../models/index";
 import { MessageView, TradesView } from "../views/index";
 
@@ -15,8 +15,11 @@ export class TradingController {
     // private _inputValue: HTMLInputElement;
 
     // Using Jquery
+    @domInject('#date')
     private _inputDate: JQuery;
+    @domInject('#quantiy')
     private _inputQuantity: JQuery;
+    @domInject('#value')
     private _inputValue: JQuery;
 
     private _trades: Trades = new Trades();
@@ -36,7 +39,7 @@ export class TradingController {
         this._tradesView.update(this._trades);
     }
 
-    @CalcExecutionTime(true)
+    //@CalcExecutionTime(true)
     add(event: Event) {
 
         event.preventDefault();
