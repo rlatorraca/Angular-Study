@@ -1,4 +1,4 @@
-import { CalcExecutionTime } from "../helpers/decorators/CalcExecutionTime";
+import { CalcExecutionTime } from "../helpers/decorators/calcExecutionTime";
 import { TradeIn } from "./TradeIn";
 
 export class Trades {

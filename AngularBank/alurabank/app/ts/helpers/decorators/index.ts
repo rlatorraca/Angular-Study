@@ -1,1 +1,3 @@
-export * from './CalcExecutionTime';
+export * from './calcExecutionTime';
+export * from './domInject';
+export * from './myClassDecorator';

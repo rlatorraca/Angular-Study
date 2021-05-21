@@ -1,4 +1,4 @@
-export function CalcExecutionTime(seconds: boolean = false) {
+export function calcExecutionTime(seconds: boolean = false) {
 
     // Decorator
     //  - deve retornar outra Funcao

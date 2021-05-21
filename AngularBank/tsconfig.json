@@ -8,7 +8,8 @@
         "removeComments": true,
         "module": "system",
         "strictNullChecks": true,
-        "experimentalDecorators": true
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
     },
     "include": [
         "alurabank/app/ts/**/*"

@@ -1,8 +1,9 @@
 
-import { CalcExecutionTime } from "../helpers/decorators/index";
+import { domInject, myClassDecorator } from "../helpers/decorators/index";
 import { TradeIn, Trades } from "../models/index";
 import { MessageView, TradesView } from "../views/index";
 
+@myClassDecorator()
 export class TradingController {
     // ==> GENERIC
     // private _inputDate: Element;
@@ -15,8 +16,11 @@ export class TradingController {
     // private _inputValue: HTMLInputElement;
 
     // Using Jquery
+    @domInject('#date')
     private _inputDate: JQuery;
+    @domInject('#quantiy')
     private _inputQuantity: JQuery;
+    @domInject('#value')
     private _inputValue: JQuery;
 
     private _trades: Trades = new Trades();
@@ -36,7 +40,7 @@ export class TradingController {
         this._tradesView.update(this._trades);
     }
 
-    @CalcExecutionTime(true)
+    //@CalcExecutionTime(true)
     add(event: Event) {
 
         event.preventDefault();
@@ -114,3 +118,9 @@ enum DaysOfWeek {
     Saturday
 }
 
+<<<<<<< HEAD
+=======
+function myClassErrorDecorator() {
+    throw new Error("Function not implemented.");
+}
+>>>>>>> 7d17a8b861d58687a43431ff723efe805c4bcb54
