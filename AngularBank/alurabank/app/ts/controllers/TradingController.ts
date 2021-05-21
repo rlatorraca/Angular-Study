@@ -78,6 +78,9 @@ export class TradingController {
         this._messageView.update('Trade In properly included', 'alert-info');
 
     }
+    importData() {
+        console.log("oi");
+    }
 
     get inputDate() {
         return this._inputDate;
@@ -96,6 +99,7 @@ export class TradingController {
         return date.getDay() != DaysOfWeek.Saturday && date.getDay() != DaysOfWeek.Sunday;
     }
 
+    }
 
 }
 
@@ -109,3 +113,4 @@ enum DaysOfWeek {
     Friday,
     Saturday
 }
+
