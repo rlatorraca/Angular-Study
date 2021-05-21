@@ -103,7 +103,7 @@ export class TradingController {
         return date.getDay() != DaysOfWeek.Saturday && date.getDay() != DaysOfWeek.Sunday;
     }
 
-    }
+    
 
 }
 
@@ -118,9 +118,12 @@ enum DaysOfWeek {
     Saturday
 }
 
-<<<<<<< HEAD
-=======
+
 function myClassErrorDecorator() {
     throw new Error("Function not implemented.");
 }
->>>>>>> 7d17a8b861d58687a43431ff723efe805c4bcb54
+
+function CalcExecutionTime(arg0: boolean) {
+    throw new Error("Function not implemented.");
+}
+
