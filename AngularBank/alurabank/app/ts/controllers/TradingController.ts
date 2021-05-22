@@ -1,8 +1,9 @@
 
-import { domInject, myClassDecorator } from "../helpers/decorators/index";
+import { domInject, myClassDecorator, throttle } from "../helpers/decorators/index";
 import { TradeIn, Trades } from "../models/index";
 import { PartialTradeIn } from "../models/PartialTradeIn";
 import { MessageView, TradesView } from "../views/index";
+
 
 @myClassDecorator()
 export class TradingController {
@@ -42,9 +43,9 @@ export class TradingController {
     }
 
     //@CalcExecutionTime(true)
-    add(event: Event) {
-
-        event.preventDefault();
+    @throttle()
+    add() {
+       
 
         let date = new Date(this._inputDate.val().replace(/-/g, '/')); // switch -' to ','
 
@@ -84,6 +85,7 @@ export class TradingController {
 
     }
 
+    @throttle()
     importDataFromAPI() {
         
         function isServerRunning(res: Response){
@@ -110,6 +112,8 @@ export class TradingController {
                 this._tradesView.update(this._trades);
             })
             .catch(err => console.log(err.message))
+
+        
     }
 
     get inputDate() {

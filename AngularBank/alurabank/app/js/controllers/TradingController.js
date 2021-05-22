@@ -40,8 +40,7 @@ System.register(["../helpers/decorators/index", "../models/index", "../views/ind
                     this._messageView = new index_3.MessageView('#messageView');
                     this._tradesView.update(this._trades);
                 }
-                add(event) {
-                    event.preventDefault();
+                add() {
                     let date = new Date(this._inputDate.val().replace(/-/g, '/'));
                     if (!this._businessDay(date)) {
                         this._messageView.update("Trade In just permitted in business day", "alert-danger");
@@ -100,6 +99,18 @@ System.register(["../helpers/decorators/index", "../models/index", "../views/ind
                 index_1.domInject('#value'),
                 __metadata("design:type", Object)
             ], TradingController.prototype, "_inputValue", void 0);
+            __decorate([
+                index_1.throttle(),
+                __metadata("design:type", Function),
+                __metadata("design:paramtypes", []),
+                __metadata("design:returntype", void 0)
+            ], TradingController.prototype, "add", null);
+            __decorate([
+                index_1.throttle(),
+                __metadata("design:type", Function),
+                __metadata("design:paramtypes", []),
+                __metadata("design:returntype", void 0)
+            ], TradingController.prototype, "importDataFromAPI", null);
             TradingController = __decorate([
                 index_1.myClassDecorator(),
                 __metadata("design:paramtypes", [])

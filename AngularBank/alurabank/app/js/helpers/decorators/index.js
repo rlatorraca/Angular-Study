@@ -1,4 +1,4 @@
-System.register(["./calcExecutionTime", "./domInject", "./myClassDecorator"], function (exports_1, context_1) {
+System.register(["./calcExecutionTime", "./domInject", "./myClassDecorator", "./throtle"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     function exportStar_1(m) {
@@ -18,6 +18,9 @@ System.register(["./calcExecutionTime", "./domInject", "./myClassDecorator"], fu
             },
             function (myClassDecorator_1_1) {
                 exportStar_1(myClassDecorator_1_1);
+            },
+            function (throtle_1_1) {
+                exportStar_1(throtle_1_1);
             }
         ],
         execute: function () {
