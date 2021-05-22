@@ -11,6 +11,7 @@ System.register(["./controllers/TradingController"], function (exports_1, contex
         execute: function () {
             controller = new TradingController_1.TradingController();
             $('.form').submit(controller.add.bind(controller));
+            $('#import-button').click(controller.importDataFromAPI.bind(controller));
         }
     };
 });

@@ -1,4 +1,4 @@
-import { CalcExecutionTime } from "../helpers/decorators/index";
+import { calcExecutionTime } from "../helpers/decorators/index";
 
 
 export abstract class View<T> {
@@ -16,7 +16,7 @@ export abstract class View<T> {
         this._escape = escape;
     }
 
-    @CalcExecutionTime()
+    @calcExecutionTime()
     update(model: T, alertColor?: T) {
 
         //this._element.innerHTML = this.template(model);

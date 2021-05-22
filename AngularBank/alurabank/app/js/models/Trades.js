@@ -1,4 +1,4 @@
-System.register(["../helpers/decorators/CalcExecutionTime"], function (exports_1, context_1) {
+System.register(["../helpers/decorators/index"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -6,12 +6,15 @@ System.register(["../helpers/decorators/CalcExecutionTime"], function (exports_1
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var CalcExecutionTime_1, Trades;
+    var __metadata = (this && this.__metadata) || function (k, v) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+    };
+    var index_1, Trades;
     var __moduleName = context_1 && context_1.id;
     return {
         setters: [
-            function (CalcExecutionTime_1_1) {
-                CalcExecutionTime_1 = CalcExecutionTime_1_1;
+            function (index_1_1) {
+                index_1 = index_1_1;
             }
         ],
         execute: function () {
@@ -27,7 +30,10 @@ System.register(["../helpers/decorators/CalcExecutionTime"], function (exports_1
                 }
             };
             __decorate([
-                CalcExecutionTime_1.CalcExecutionTime()
+                index_1.calcExecutionTime(),
+                __metadata("design:type", Function),
+                __metadata("design:paramtypes", []),
+                __metadata("design:returntype", Array)
             ], Trades.prototype, "toArray", null);
             exports_1("Trades", Trades);
         }

@@ -9,4 +9,4 @@ const controller = new TradingController();
 
 // Using Jquery
 $('.form').submit(controller.add.bind(controller));
-$('#import-button').click(controller.importarDados.bind(controller));
+$('#import-button').click(controller.importDataFromAPI.bind(controller));

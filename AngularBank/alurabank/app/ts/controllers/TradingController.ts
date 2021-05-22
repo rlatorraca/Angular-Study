@@ -1,6 +1,7 @@
 
 import { domInject, myClassDecorator } from "../helpers/decorators/index";
 import { TradeIn, Trades } from "../models/index";
+import { PartialTradeIn } from "../models/PartialTradeIn";
 import { MessageView, TradesView } from "../views/index";
 
 @myClassDecorator()
@@ -15,10 +16,10 @@ export class TradingController {
     // private _inputQuantity: HTMLInputElement;
     // private _inputValue: HTMLInputElement;
 
-    // Using Jquery
+    // Using Jquery 
     @domInject('#date')
     private _inputDate: JQuery;
-    @domInject('#quantiy')
+    @domInject('#quantity')
     private _inputQuantity: JQuery;
     @domInject('#value')
     private _inputValue: JQuery;
@@ -33,9 +34,9 @@ export class TradingController {
         // this._inputValue = <HTMLInputElement>document.querySelector('#value');
 
         // Using Jquery
-        this._inputDate = $('#date');
-        this._inputQuantity = $('#quantity');
-        this._inputValue = $('#value');
+        //this._inputDate = $('#date');
+        //this._inputQuantity = $('#quantity');
+        //this._inputValue = $('#value');
         // atualiza a view para exibir os dados do modelo, vazio
         this._tradesView.update(this._trades);
     }
@@ -82,8 +83,33 @@ export class TradingController {
         this._messageView.update('Trade In properly included', 'alert-info');
 
     }
-    importData() {
-        console.log("oi");
+
+    importDataFromAPI() {
+        
+        function isServerRunning(res: Response){
+            if(res.ok){
+                return res;                
+            }else {
+                throw new Error(res.statusText);
+            }
+            
+        }
+
+        fetch('http://localhost:8080/dados')
+            .then(res => isServerRunning(res))
+            .then(res => res.json())
+            .then((dados: PartialTradeIn[]) => {
+                dados
+                    .map(dado => new TradeIn(new Date(), dado.montante, dado.vezes))
+                    .forEach(trade => {
+                        console.log(trade);
+                        this._trades.add(trade);
+                        
+                    });
+                
+                this._tradesView.update(this._trades);
+            })
+            .catch(err => console.log(err.message))
     }
 
     get inputDate() {
@@ -123,7 +149,11 @@ function myClassErrorDecorator() {
     throw new Error("Function not implemented.");
 }
 
-function CalcExecutionTime(arg0: boolean) {
+function CalcExecutionTimeError(arg0: boolean) {
+    throw new Error("Function not implemented.");
+}
+
+function forEach(arg0: (trade: any) => void) {
     throw new Error("Function not implemented.");
 }
 

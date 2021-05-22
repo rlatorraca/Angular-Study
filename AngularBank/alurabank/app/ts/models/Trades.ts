@@ -1,4 +1,4 @@
-import { CalcExecutionTime } from "../helpers/decorators/calcExecutionTime";
+import { calcExecutionTime } from "../helpers/decorators/index";
 import { TradeIn } from "./TradeIn";
 
 export class Trades {
@@ -10,7 +10,7 @@ export class Trades {
         this._trades.push(tradeIn);
     }
 
-    @CalcExecutionTime()
+    @calcExecutionTime()
     toArray(): TradeIn[] {
         return ([] as TradeIn[]).concat(this._trades);
     }
