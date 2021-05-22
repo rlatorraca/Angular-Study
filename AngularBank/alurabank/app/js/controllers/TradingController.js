@@ -1,4 +1,4 @@
-System.register(["../helpers/decorators/index", "../models/index", "../views/index"], function (exports_1, context_1) {
+System.register(["../helpers/decorators/index", "../models/index", "../views/index", "../service/index"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -9,7 +9,7 @@ System.register(["../helpers/decorators/index", "../models/index", "../views/ind
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var index_1, index_2, index_3, TradingController, DaysOfWeek;
+    var index_1, index_2, index_3, index_4, TradingController, DaysOfWeek;
     var __moduleName = context_1 && context_1.id;
     function myClassErrorDecorator() {
         throw new Error("Function not implemented.");
@@ -30,6 +30,9 @@ System.register(["../helpers/decorators/index", "../models/index", "../views/ind
             },
             function (index_3_1) {
                 index_3 = index_3_1;
+            },
+            function (index_4_1) {
+                index_4 = index_4_1;
             }
         ],
         execute: function () {
@@ -38,6 +41,7 @@ System.register(["../helpers/decorators/index", "../models/index", "../views/ind
                     this._trades = new index_2.Trades();
                     this._tradesView = new index_3.TradesView('#tradesViews');
                     this._messageView = new index_3.MessageView('#messageView');
+                    this._service = new index_4.TradeInService();
                     this._tradesView.update(this._trades);
                 }
                 add() {
@@ -60,19 +64,12 @@ System.register(["../helpers/decorators/index", "../models/index", "../views/ind
                             throw new Error(res.statusText);
                         }
                     }
-                    fetch('http://localhost:8080/dados')
-                        .then(res => isServerRunning(res))
-                        .then(res => res.json())
-                        .then((dados) => {
-                        dados
-                            .map(dado => new index_2.TradeIn(new Date(), dado.montante, dado.vezes))
-                            .forEach(trade => {
-                            console.log(trade);
-                            this._trades.add(trade);
-                        });
+                    this._service
+                        .getTradesService(isServerRunning)
+                        .then((trades) => {
+                        trades.forEach(trade => this._trades.add(trade));
                         this._tradesView.update(this._trades);
-                    })
-                        .catch(err => console.log(err.message));
+                    });
                 }
                 get inputDate() {
                     return this._inputDate;

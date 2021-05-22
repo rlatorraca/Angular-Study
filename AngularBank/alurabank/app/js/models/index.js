@@ -1,4 +1,4 @@
-System.register(["./TradeIn", "./Trades"], function (exports_1, context_1) {
+System.register(["./TradeIn", "./Trades", "./PartialTradeIn"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     function exportStar_1(m) {
@@ -15,6 +15,9 @@ System.register(["./TradeIn", "./Trades"], function (exports_1, context_1) {
             },
             function (Trades_1_1) {
                 exportStar_1(Trades_1_1);
+            },
+            function (PartialTradeIn_1_1) {
+                exportStar_1(PartialTradeIn_1_1);
             }
         ],
         execute: function () {

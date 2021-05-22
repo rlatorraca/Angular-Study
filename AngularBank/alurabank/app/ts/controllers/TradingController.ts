@@ -3,6 +3,7 @@ import { domInject, myClassDecorator, throttle } from "../helpers/decorators/ind
 import { TradeIn, Trades } from "../models/index";
 import { PartialTradeIn } from "../models/PartialTradeIn";
 import { MessageView, TradesView } from "../views/index";
+import { TradeInService } from "../service/index"
 
 
 @myClassDecorator()
@@ -28,6 +29,8 @@ export class TradingController {
     private _trades: Trades = new Trades();
     private _tradesView = new TradesView('#tradesViews');
     private _messageView = new MessageView('#messageView');
+
+    private _service = new TradeInService();
 
     constructor() {
         // this._inputDate = <HTMLInputElement>document.querySelector('#date');
@@ -97,22 +100,29 @@ export class TradingController {
             
         }
 
+        this._service
+            .getTradesService(isServerRunning)
+            .then((trades: TradeIn[]) => {
+                trades.forEach(trade => this._trades.add(trade));
+                this._tradesView.update(this._trades);
+            });
+        /*
         fetch('http://localhost:8080/dados')
             .then(res => isServerRunning(res))
             .then(res => res.json())
             .then((dados: PartialTradeIn[]) => {
                 dados
                     .map(dado => new TradeIn(new Date(), dado.montante, dado.vezes))
-                    .forEach(trade => {
-                        console.log(trade);
-                        this._trades.add(trade);
+                //  .forEach(trade => {
+                //      console.log(trade);
+                //      this._trades.add(trade);
                         
-                    });
+                //   });
                 
-                this._tradesView.update(this._trades);
+                // this._tradesView.update(this._trades);
             })
             .catch(err => console.log(err.message))
-
+        */
         
     }
 
