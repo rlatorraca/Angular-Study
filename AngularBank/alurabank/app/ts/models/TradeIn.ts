@@ -21,6 +21,17 @@ export class TradeIn {
     }
 
 
+    toString(): void {
+        console.log('-- To String in TradeIn--');
+        console.log(
+            `Data: ${this.date}
+            Quantidade: ${this.quantity}, 
+            Valor: ${this.value}, 
+            Volume: ${this.volume}`
+        );
+    }
+
+
     get date() {
         return this._date;
     }

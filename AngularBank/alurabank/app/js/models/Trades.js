@@ -28,6 +28,10 @@ System.register(["../helpers/decorators/index"], function (exports_1, context_1)
                 toArray() {
                     return [].concat(this._trades);
                 }
+                toString() {
+                    console.log('-- To String in Trades --');
+                    console.log(JSON.stringify(this._trades));
+                }
             };
             __decorate([
                 index_1.calcExecutionTime(),

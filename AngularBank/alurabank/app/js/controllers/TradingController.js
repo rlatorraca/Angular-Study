@@ -1,4 +1,4 @@
-System.register(["../helpers/decorators/index", "../models/index", "../views/index", "../service/index"], function (exports_1, context_1) {
+System.register(["../helpers/decorators/index", "../models/index", "../views/index", "../service/index", "../helpers/index"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -9,7 +9,7 @@ System.register(["../helpers/decorators/index", "../models/index", "../views/ind
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var index_1, index_2, index_3, index_4, TradingController, DaysOfWeek;
+    var index_1, index_2, index_3, index_4, index_5, TradingController, DaysOfWeek;
     var __moduleName = context_1 && context_1.id;
     function myClassErrorDecorator() {
         throw new Error("Function not implemented.");
@@ -33,6 +33,9 @@ System.register(["../helpers/decorators/index", "../models/index", "../views/ind
             },
             function (index_4_1) {
                 index_4 = index_4_1;
+            },
+            function (index_5_1) {
+                index_5 = index_5_1;
             }
         ],
         execute: function () {
@@ -52,6 +55,7 @@ System.register(["../helpers/decorators/index", "../models/index", "../views/ind
                     }
                     const tradeIn = new index_2.TradeIn(date, parseInt(this._inputQuantity.val()), parseFloat(this._inputValue.val()));
                     this._trades.add(tradeIn);
+                    index_5.printer(tradeIn, this._trades);
                     this._tradesView.update(this._trades);
                     this._messageView.update('Trade In properly included', 'alert-info');
                 }

@@ -15,4 +15,10 @@ export class Trades {
         return ([] as TradeIn[]).concat(this._trades);
     }
 
+    toString(): void {
+
+        console.log('-- To String in Trades --');
+        console.log(JSON.stringify(this._trades));
+    }
+
 }

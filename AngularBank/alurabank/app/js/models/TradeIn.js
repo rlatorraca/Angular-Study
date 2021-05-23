@@ -11,6 +11,13 @@ System.register([], function (exports_1, context_1) {
                     this._quantity = _quantity;
                     this._value = _value;
                 }
+                toString() {
+                    console.log('-- To String in TradeIn--');
+                    console.log(`Data: ${this.date}
+            Quantidade: ${this.quantity}, 
+            Valor: ${this.value}, 
+            Volume: ${this.volume}`);
+                }
                 get date() {
                     return this._date;
                 }
