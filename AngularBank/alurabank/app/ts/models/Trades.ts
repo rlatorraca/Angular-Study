@@ -1,7 +1,8 @@
 import { calcExecutionTime } from "../helpers/decorators/index";
+import { Printable } from "./Printable";
 import { TradeIn } from "./TradeIn";
 
-export class Trades {
+export class Trades extends Printable{
 
     //private _trades: Array<TradeIn> = [];
     private _trades: TradeIn[] = [];

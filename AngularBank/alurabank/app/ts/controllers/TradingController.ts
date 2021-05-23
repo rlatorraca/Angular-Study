@@ -1,12 +1,9 @@
 
 import { domInject, myClassDecorator, throttle } from "../helpers/decorators/index";
 import { TradeIn, Trades } from "../models/index";
-import { PartialTradeIn } from "../models/PartialTradeIn";
 import { MessageView, TradesView } from "../views/index";
 import { ResponseHandler, TradeInService } from "../service/index"
-import { createPrinter } from "../../../../node_modules/typescript/lib/typescript";
 import { printer } from "../helpers/index";
-
 
 @myClassDecorator()
 export class TradingController {
