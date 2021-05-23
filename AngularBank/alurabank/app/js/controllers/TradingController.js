@@ -82,6 +82,10 @@ System.register(["../helpers/decorators/index", "../models/index", "../views/ind
                             return;
                         }
                         this._tradesView.update(this._trades);
+                        this._messageView.update("Successfully Imported", 'alert-warning');
+                    })
+                        .catch(err => {
+                        this._messageView.update(err.message, 'alert-danger');
                     });
                 }
                 get inputDate() {
