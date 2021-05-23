@@ -68,8 +68,19 @@ System.register(["../helpers/decorators/index", "../models/index", "../views/ind
                     };
                     this._service
                         .getTradesService(isServerRunning)
-                        .then((trades) => {
-                        trades.forEach(trade => this._trades.add(trade));
+                        .then((tradesToImport) => {
+                        const tradesImported = this._trades.toArray();
+                        let totalNewRows = 0;
+                        tradesToImport
+                            .filter(trade => !tradesImported.some(imported => trade.isEqual(imported)))
+                            .forEach(trade => {
+                            this._trades.add(trade);
+                            totalNewRows++;
+                        });
+                        if (totalNewRows == 0) {
+                            console.log("Failed, those data was imported before");
+                            return;
+                        }
                         this._tradesView.update(this._trades);
                     });
                 }

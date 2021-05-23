@@ -28,6 +28,9 @@ System.register(["../helpers/decorators/index"], function (exports_1, context_1)
                 toArray() {
                     return [].concat(this._trades);
                 }
+                isEqual(trades) {
+                    return JSON.stringify(this._trades) == JSON.stringify(trades.toArray());
+                }
                 toString() {
                     console.log('-- To String in Trades --');
                     console.log(JSON.stringify(this._trades));

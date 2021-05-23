@@ -11,6 +11,11 @@ System.register([], function (exports_1, context_1) {
                     this._quantity = _quantity;
                     this._value = _value;
                 }
+                isEqual(tradeIn) {
+                    return this.date.getDate() == tradeIn.date.getDate()
+                        && this.date.getMonth() == tradeIn.date.getMonth()
+                        && this.date.getFullYear() == tradeIn.date.getFullYear();
+                }
                 toString() {
                     console.log('-- To String in TradeIn--');
                     console.log(`Data: ${this.date}

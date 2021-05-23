@@ -112,10 +112,27 @@ export class TradingController {
 
         this._service
             .getTradesService(isServerRunning)
-            .then((trades: TradeIn[]) => {
-                trades.forEach(trade => this._trades.add(trade));
+            .then((tradesToImport: TradeIn[]) => {
+                const tradesImported = this._trades.toArray();
+                let totalNewRows = 0;
+                tradesToImport
+                    .filter(trade => 
+                        !tradesImported.some(imported => trade.isEqual(imported)))                    
+                    .forEach(trade => {
+                        this._trades.add(trade);
+                        totalNewRows++;
+                    });                   
+                
+                if(totalNewRows == 0){
+                    console.log("Failed, those data was imported before")
+                    return;
+                }
                 this._tradesView.update(this._trades);
             });
+            // .then((trades: TradeIn[]) => {
+            //     trades.forEach(trade => this._trades.add(trade));
+            //     this._tradesView.update(this._trades);
+            // });
         /*
         fetch('http://localhost:8080/dados')
             .then(res => isServerRunning(res))

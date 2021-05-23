@@ -1,5 +1,5 @@
-import { Printable } from "./Printable"
-export class TradeIn implements Printable{
+import { MyInterfaces } from './MyInterfaces';
+export class TradeIn implements MyInterfaces<TradeIn> {
 
     // ==> OLD
     // private _date: Date;
@@ -19,6 +19,13 @@ export class TradeIn implements Printable{
     // ==> NEW 
     constructor(private _date: Date, private _quantity: number, private _value: number) {
         
+    }
+   
+    isEqual(tradeIn: TradeIn): boolean {
+
+        return this.date.getDate() == tradeIn.date.getDate()
+            && this.date.getMonth() == tradeIn.date.getMonth()
+            && this.date.getFullYear() == tradeIn.date.getFullYear();
     }
 
 
