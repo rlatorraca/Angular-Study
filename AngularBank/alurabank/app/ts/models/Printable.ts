@@ -1,4 +1,4 @@
-export abstract class Printable {
+export interface Printable {
 
-    abstract toString(): void;
+    toString(): void;
 }

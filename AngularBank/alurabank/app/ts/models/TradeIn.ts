@@ -1,5 +1,5 @@
 import { Printable } from "./Printable"
-export class TradeIn extends Printable{
+export class TradeIn implements Printable{
 
     // ==> OLD
     // private _date: Date;
@@ -18,7 +18,7 @@ export class TradeIn extends Printable{
 
     // ==> NEW 
     constructor(private _date: Date, private _quantity: number, private _value: number) {
-        super();
+        
     }
 
 

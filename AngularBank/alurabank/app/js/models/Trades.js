@@ -1,4 +1,4 @@
-System.register(["../helpers/decorators/index", "./Printable"], function (exports_1, context_1) {
+System.register(["../helpers/decorators/index"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -9,21 +9,17 @@ System.register(["../helpers/decorators/index", "./Printable"], function (export
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var index_1, Printable_1, Trades;
+    var index_1, Trades;
     var __moduleName = context_1 && context_1.id;
     return {
         setters: [
             function (index_1_1) {
                 index_1 = index_1_1;
-            },
-            function (Printable_1_1) {
-                Printable_1 = Printable_1_1;
             }
         ],
         execute: function () {
-            Trades = class Trades extends Printable_1.Printable {
+            Trades = class Trades {
                 constructor() {
-                    super(...arguments);
                     this._trades = [];
                 }
                 add(tradeIn) {

@@ -1,17 +1,12 @@
-System.register(["./Printable"], function (exports_1, context_1) {
+System.register([], function (exports_1, context_1) {
     "use strict";
-    var Printable_1, TradeIn;
+    var TradeIn;
     var __moduleName = context_1 && context_1.id;
     return {
-        setters: [
-            function (Printable_1_1) {
-                Printable_1 = Printable_1_1;
-            }
-        ],
+        setters: [],
         execute: function () {
-            TradeIn = class TradeIn extends Printable_1.Printable {
+            TradeIn = class TradeIn {
                 constructor(_date, _quantity, _value) {
-                    super();
                     this._date = _date;
                     this._quantity = _quantity;
                     this._value = _value;
