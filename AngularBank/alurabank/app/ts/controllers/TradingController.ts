@@ -3,7 +3,7 @@ import { domInject, myClassDecorator, throttle } from "../helpers/decorators/ind
 import { TradeIn, Trades } from "../models/index";
 import { PartialTradeIn } from "../models/PartialTradeIn";
 import { MessageView, TradesView } from "../views/index";
-import { TradeInService } from "../service/index"
+import { ResponseHandler, TradeInService } from "../service/index"
 
 
 @myClassDecorator()
@@ -48,7 +48,7 @@ export class TradingController {
     //@CalcExecutionTime(true)
     @throttle()
     add() {
-       
+
 
         let date = new Date(this._inputDate.val().replace(/-/g, '/')); // switch -' to ','
 
@@ -90,15 +90,23 @@ export class TradingController {
 
     @throttle()
     importDataFromAPI() {
-        
-        function isServerRunning(res: Response){
-            if(res.ok){
-                return res;                
-            }else {
-                throw new Error(res.statusText);
+
+        const isServerRunning: ResponseHandler = (res: Response) => {
+            if (res.ok) {
+                return res;
             }
-            
+            throw new Error(res.statusText);
         }
+
+        // OLD WAY
+        // function isServerRunning(res: Response) {
+        //     if (res.ok) {
+        //         return res;
+        //     } else {
+        //         throw new Error(res.statusText);
+        //     }
+
+        // }
 
         this._service
             .getTradesService(isServerRunning)
@@ -123,7 +131,7 @@ export class TradingController {
             })
             .catch(err => console.log(err.message))
         */
-        
+
     }
 
     get inputDate() {
@@ -143,7 +151,7 @@ export class TradingController {
         return date.getDay() != DaysOfWeek.Saturday && date.getDay() != DaysOfWeek.Sunday;
     }
 
-    
+
 
 }
 

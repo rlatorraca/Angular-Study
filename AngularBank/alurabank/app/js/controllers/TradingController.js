@@ -56,14 +56,12 @@ System.register(["../helpers/decorators/index", "../models/index", "../views/ind
                     this._messageView.update('Trade In properly included', 'alert-info');
                 }
                 importDataFromAPI() {
-                    function isServerRunning(res) {
+                    const isServerRunning = (res) => {
                         if (res.ok) {
                             return res;
                         }
-                        else {
-                            throw new Error(res.statusText);
-                        }
-                    }
+                        throw new Error(res.statusText);
+                    };
                     this._service
                         .getTradesService(isServerRunning)
                         .then((trades) => {

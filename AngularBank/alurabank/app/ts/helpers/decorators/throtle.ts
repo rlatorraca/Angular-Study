@@ -18,3 +18,4 @@ export function throttle(miliseconds = 1000) {
         return descriptor;
     }
 }
+
