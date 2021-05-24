@@ -15,7 +15,10 @@ System.register(["../models/index"], function (exports_1, context_1) {
                         .then(res => handler(res))
                         .then(res => res.json())
                         .then((dados) => dados.map(dado => new index_1.TradeIn(new Date(), dado.montante, dado.vezes)))
-                        .catch(err => console.log(err.message));
+                        .catch(err => {
+                        console.log(err);
+                        throw new Error("ERROR: Can't import data from API");
+                    });
                 }
             };
             exports_1("TradeInService", TradeInService);

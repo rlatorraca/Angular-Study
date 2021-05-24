@@ -91,44 +91,52 @@ export class TradingController {
     }
 
     @throttle()
-    importDataFromAPI() {
+    //importDataFromAPI() {
+    async importDataFromAPI() {
 
-        const isServerRunning: ResponseHandler = (res: Response) => {
-            if (res.ok) {
-                return res;
-            }
-            throw new Error(res.statusText);
-        }
+        try {
 
-        // OLD WAY
-        // function isServerRunning(res: Response) {
-        //     if (res.ok) {
-        //         return res;
-        //     } else {
-        //         throw new Error(res.statusText);
-        //     }
-
-        // }
-
-        this._service
-            .getTradesService(isServerRunning)
-            .then((tradesToImport: TradeIn[]) => {
-                const tradesImported = this._trades.toArray();
-                let totalNewRows = 0;
-                tradesToImport
-                    .filter(trade => 
-                        !tradesImported.some(imported => trade.isEqual(imported)))                    
-                    .forEach(trade => {
-                        this._trades.add(trade);
-                        totalNewRows++;
-                    });                   
-                
-                if(totalNewRows == 0){
-                    console.log("Failed, those data was imported before")
-                    return;
+            // usou await antes da chamada de this.service.obterNegociacoes()
+            const isServerRunning: ResponseHandler = (res: Response) => {
+                if (res.ok) {
+                    return res;
                 }
-                this._tradesView.update(this._trades);
-            });
+                throw new Error(res.statusText);
+            }
+
+            // OLD WAY
+            // function isServerRunning(res: Response) {
+            //     if (res.ok) {
+            //         return res;
+            //     } else {
+            //         throw new Error(res.statusText);
+            //     }
+
+            // }
+
+            const tradesToImport = await this._service
+                .getTradesService(isServerRunning)
+                //.then((tradesToImport: TradeIn[]) => {
+            const tradesImported = this._trades.toArray();
+            let totalNewRows = 0;
+            tradesToImport
+                .filter((trade: TradeIn) => 
+                    !tradesImported.some(imported => trade.isEqual(imported)))                    
+                .forEach((trade: TradeIn)  => {
+                    this._trades.add(trade);
+                    totalNewRows++;
+                });                   
+            
+            if(totalNewRows == 0){
+                console.log("Failed, those data was imported before")
+                return;
+            }
+            this._tradesView.update(this._trades);
+            
+                //})
+            //.catch(err => {
+            //    this._messageView.update(err.message,'alert-danger');
+            //});
             // .then((trades: TradeIn[]) => {
             //     trades.forEach(trade => this._trades.add(trade));
             //     this._tradesView.update(this._trades);
@@ -150,7 +158,9 @@ export class TradingController {
             })
             .catch(err => console.log(err.message))
         */
-
+        } catch(err) {
+            this._messageView.update("Successfully Imported",'alert-warning')
+        }
     }
 
     get inputDate() {

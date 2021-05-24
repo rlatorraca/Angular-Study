@@ -9,6 +9,15 @@ System.register(["../helpers/decorators/index", "../models/index", "../views/ind
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
+    var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+        function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+        return new (P || (P = Promise))(function (resolve, reject) {
+            function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+            function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+            function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+            step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+    };
     var index_1, index_2, index_3, index_4, index_5, TradingController, DaysOfWeek;
     var __moduleName = context_1 && context_1.id;
     function myClassErrorDecorator() {
@@ -60,32 +69,33 @@ System.register(["../helpers/decorators/index", "../models/index", "../views/ind
                     this._messageView.update('Trade In properly included', 'alert-info');
                 }
                 importDataFromAPI() {
-                    const isServerRunning = (res) => {
-                        if (res.ok) {
-                            return res;
+                    return __awaiter(this, void 0, void 0, function* () {
+                        try {
+                            const isServerRunning = (res) => {
+                                if (res.ok) {
+                                    return res;
+                                }
+                                throw new Error(res.statusText);
+                            };
+                            let tradesToImport = yield this._service
+                                .getTradesService(isServerRunning);
+                            const tradesImported = this._trades.toArray();
+                            let totalNewRows = 0;
+                            tradesToImport
+                                .filter((trade) => !tradesImported.some(imported => trade.isEqual(imported)))
+                                .forEach((trade) => {
+                                this._trades.add(trade);
+                                totalNewRows++;
+                            });
+                            if (totalNewRows == 0) {
+                                console.log("Failed, those data was imported before");
+                                return;
+                            }
+                            this._tradesView.update(this._trades);
                         }
-                        throw new Error(res.statusText);
-                    };
-                    this._service
-                        .getTradesService(isServerRunning)
-                        .then((tradesToImport) => {
-                        const tradesImported = this._trades.toArray();
-                        let totalNewRows = 0;
-                        tradesToImport
-                            .filter(trade => !tradesImported.some(imported => trade.isEqual(imported)))
-                            .forEach(trade => {
-                            this._trades.add(trade);
-                            totalNewRows++;
-                        });
-                        if (totalNewRows == 0) {
-                            console.log("Failed, those data was imported before");
-                            return;
+                        catch (err) {
+                            this._messageView.update("Successfully Imported", 'alert-warning');
                         }
-                        this._tradesView.update(this._trades);
-                        this._messageView.update("Successfully Imported", 'alert-warning');
-                    })
-                        .catch(err => {
-                        this._messageView.update(err.message, 'alert-danger');
                     });
                 }
                 get inputDate() {
@@ -123,7 +133,7 @@ System.register(["../helpers/decorators/index", "../models/index", "../views/ind
                 index_1.throttle(),
                 __metadata("design:type", Function),
                 __metadata("design:paramtypes", []),
-                __metadata("design:returntype", void 0)
+                __metadata("design:returntype", Promise)
             ], TradingController.prototype, "importDataFromAPI", null);
             TradingController = __decorate([
                 index_1.myClassDecorator(),
