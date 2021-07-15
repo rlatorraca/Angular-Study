@@ -1,5 +1,3 @@
 <app-new-transfer (toView)="view($event)"></app-new-transfer>
 
-<p>Value: {{ transfered?.value }} </p>
-
-<p>Destination: {{ transfered?.destination }} </p>
+<app-show-transfer [transfered]="transfereds"></app-show-transfer>
