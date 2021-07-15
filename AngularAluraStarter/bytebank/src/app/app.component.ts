@@ -8,7 +8,14 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'bytebank';
 
-  view($event){
+  transfered: any;
+
+  public view($event: any): void{
     console.log($event);
+    this.transfered = $event;
+
   }
+
+
+
 }

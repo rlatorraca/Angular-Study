@@ -16,6 +16,12 @@ export class NewTransferComponent {
   public transfer(): any {
     const valuesToView = { value: this.value, destination: this.destination };
     this.toView.emit(valuesToView);
+    this.cleanFields();
+  }
+
+  public cleanFields(): void {
+    this.value = 0;
+    this.destination = 0;
   }
 
 }
