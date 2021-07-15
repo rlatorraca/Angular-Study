@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+
 
 @Component({
   selector: 'app-new-transfer',
@@ -7,13 +8,14 @@ import { Component } from '@angular/core';
 })
 export class NewTransferComponent {
 
-  valor = 0 ;
-  destino = 0 ;
+  @Output() toView = new EventEmitter<any>(); // Propage the data to other component
+
+  value: number ;
+  destination: number ;
 
   public transfer(): any {
-    console.log('Transfering');
-    console.log(this.valor);
-    console.log(this.destino);
+    const valuesToView = { value: this.value, destination: this.destination };
+    this.toView.emit(valuesToView);
   }
 
 }
