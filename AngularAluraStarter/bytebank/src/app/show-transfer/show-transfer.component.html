@@ -1,6 +1,16 @@
-<div *ngFor="let item of transfered">
-  <p>Date: {{ item?.date }} </p>
-  <p>Value: {{ item?.value }} </p>
-  <p>Destination: {{ item?.destination }} </p>
-</div>
+<table class="tabela">
+  <thead class="tabela__cabecalho">
+    <th class="tabela__cabecalho__conteudo">Date</th>
+    <th class="tabela__cabecalho__conteudo">Valeu</th>
+    <th class="tabela__cabecalho__conteudo">To</th>
+  </thead>
+  <tbody>
+    <tr class="tabela__linha" *ngFor="let item of transfered">
+      <td class="tabela__conteudo" >{{ item?.date | date: 'short'}}</td>
+      <td class="tabela__conteudo">{{ item?.value | currency:'CAD':'symbol-narrow'}}</td>
+      <td class="tabela__conteudo">{{ item?.destination }}</td>
+    </tr>
+  </tbody>
+</table>
+
 
