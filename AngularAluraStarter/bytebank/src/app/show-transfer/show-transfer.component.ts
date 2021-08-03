@@ -1,3 +1,4 @@
+import { TransactionService } from './../services/transaction.service';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -7,11 +8,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ShowTransferComponent implements OnInit {
 
-  @Input() transfered: any[];
+  //@Input()
+  transfered: any[];
 
-  constructor() { }
+  constructor(private service: TransactionService) { }
 
   ngOnInit() {
+    this.transfered = this.service.transactions;
   }
 
 }
