@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Transferencia } from '../model/transferencia.model';
 
 // Essa classe pode ser invocada pelo Constructor
 @Injectable({
@@ -7,11 +10,15 @@ import { Injectable } from '@angular/core';
 export class TransactionService {
 
   private transactionList: any[];
+  private url = 'http://localhost:3000/transferencias/';
 
-  constructor() {
+  constructor(private httpClient: HttpClient) {
     this.transactionList = [];
   }
 
+  allTransactions(): Observable<Transferencia[]>{
+    return this.httpClient.get<Transferencia[]>(this.url);
+  }
 
   get transactions(): any {
     return this.transactionList;

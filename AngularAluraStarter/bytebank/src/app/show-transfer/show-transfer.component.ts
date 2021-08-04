@@ -1,3 +1,4 @@
+import { Transferencia } from '../model/transferencia.model';
 import { TransactionService } from './../services/transaction.service';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -8,13 +9,17 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ShowTransferComponent implements OnInit {
 
-  //@Input()
-  transfered: any[];
+  /*@Input()*/
+  transactionsList: any[];
 
   constructor(private service: TransactionService) { }
 
-  ngOnInit() {
-    this.transfered = this.service.transactions;
+  ngOnInit(): void {
+   this.service.allTransactions().subscribe(
+     (transactions: Transferencia[]) => {
+        console.table(transactions);
+        this.transactionsList = transactions;
+   });
   }
 
 }

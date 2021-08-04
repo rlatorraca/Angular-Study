@@ -4,9 +4,9 @@
     <th class="tabela__cabecalho__conteudo">Valeu</th>
     <th class="tabela__cabecalho__conteudo">To</th>
   </thead>
-  <tbody *ngIf="transfered?.length >0 ; else emptylist" >
-    <tr class="tabela__linha" *ngFor="let item of transfered">
-      <td class="tabela__conteudo" >{{ item?.date | date: 'short'}}</td>
+  <tbody *ngIf="transactionsList?.length > 0 ; else emptylist" >
+    <tr class="tabela__linha" *ngFor="let item of transactionsList">
+      <td class="tabela__conteudo">{{ item?.date | date: 'short'}}</td>
       <td class="tabela__conteudo">{{ item?.value | currency:'CAD':'symbol-narrow'}}</td>
       <td class="tabela__conteudo">{{ item?.destination }}</td>
     </tr>
