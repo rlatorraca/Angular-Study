@@ -1,19 +1,23 @@
-<table class="tabela">
-  <thead class="tabela__cabecalho">
-    <th class="tabela__cabecalho__conteudo">Date</th>
-    <th class="tabela__cabecalho__conteudo">Valeu</th>
-    <th class="tabela__cabecalho__conteudo">To</th>
-  </thead>
-  <tbody *ngIf="transactionsList?.length > 0 ; else emptylist" >
-    <tr class="tabela__linha" *ngFor="let item of transactionsList">
-      <td class="tabela__conteudo">{{ item?.date | date: 'short'}}</td>
-      <td class="tabela__conteudo">{{ item?.value | currency:'CAD':'symbol-narrow'}}</td>
-      <td class="tabela__conteudo">{{ item?.destination }}</td>
-    </tr>
-  </tbody>
-</table>
+<section class="container">
+  <h2 class="titulo">Transactions</h2>
+  <table class="tabela">
 
-<ng-template #emptylist>
-  <p>There is no operation inserted</p>
-</ng-template>
+    <thead class="tabela__cabecalho">
+      <th class="tabela__cabecalho__conteudo">Date</th>
+      <th class="tabela__cabecalho__conteudo">Valeu</th>
+      <th class="tabela__cabecalho__conteudo">To</th>
+    </thead>
+    <tbody *ngIf="transactionsList?.length > 0 ; else emptylist" >
+      <tr class="tabela__linha" *ngFor="let item of transactionsList">
+        <td class="tabela__conteudo">{{ item?.date | date: 'short'}}</td>
+        <td class="tabela__conteudo">{{ item?.value | currency:'CAD':'symbol-narrow'}}</td>
+        <td class="tabela__conteudo">{{ item?.destination }}</td>
+      </tr>
+    </tbody>
+  </table>
 
+  <ng-template #emptylist>
+    <p>There is no operation inserted</p>
+  </ng-template>
+
+</section>

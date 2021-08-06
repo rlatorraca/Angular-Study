@@ -24,9 +24,10 @@ export class TransactionService {
     return this.transactionList;
   }
 
-  addTransactions(transaction: any): any{
+  addTransactions(transaction: Transferencia): Observable<Transferencia> {
     this.manipulateData(transaction);
-    this.transactionList.push(transaction);
+    /*this.transactionList.push(transaction);*/
+    return this.httpClient.post<Transferencia>(this.url, transaction);
   }
 
   private manipulateData(transaction: any): any {

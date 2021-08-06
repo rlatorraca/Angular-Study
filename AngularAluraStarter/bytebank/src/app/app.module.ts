@@ -1,3 +1,4 @@
+import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
@@ -21,6 +22,7 @@ registerLocaleData( localeCAFr, 'fr-CA' );
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    AppRoutingModule,
 
   ],
   providers: [

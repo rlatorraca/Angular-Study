@@ -1,3 +1,13 @@
-<app-new-transfer (toView)="view($event)"></app-new-transfer>
-
+<!--
+<app-new-transfer></app-new-transfer>
 <app-show-transfer ></app-show-transfer>
+-->
+
+<header class="header">
+  <a routerLink="view" >ByteBANK</a>
+  <a routerLink="view" >Balance</a>
+  <a routerLink="new-transfer" routerLinkActive="active">New Transfer</a>
+</header>
+<main>
+  <router-outlet></router-outlet>
+</main>
